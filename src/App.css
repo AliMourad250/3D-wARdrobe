@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -32,7 +33,83 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  margin-left: 450px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.nav-links {
+  font-size: 25px;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+}
+
+
+.home-categories-h1,
+.home-brands-h1,
+.home-topSellers-h1 {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.home-categories-box,
+.home-topSellers-box {
+
+
+  margin: 20px;
+  border: #282c34;
+  background-color: #282c34;
+  padding: 40px 20px;
+  border-radius: 20px;
+  max-height: 300px;
+  width: 200px;
+  height: 200px;
+  margin-left: 50px;
+
+}
+
+
+.home-brands-box {
+  margin: 20px;
+  border: #282c34;
+  background-color: #282c34;
+  padding: 40px 20px;
+  height: 100px;
+  width: 1000px;
+  border-radius: 20px;
+  margin-left: 50px;
+
+}
+
+.home-categories,
+.home-brands,
+.home-topSellers {
+  display: flex;
+  margin-right: 300px;
+}
+
+.home-img {
+  z-index: 999;
+}
+
+.home-img-ss1 {
+  height: 200px;
+  width: 200px;
+  margin: 0;
+}
+
+
+body {
+  background-color: rgb(231, 231, 231);
 }
