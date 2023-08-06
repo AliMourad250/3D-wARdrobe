@@ -20,9 +20,11 @@ const NavBar = () => {
                 </NavLink>
                 <NavLink to='/' className='nav-links' align="right" >
                     <img className='nav-cart' src={wardrobe} />
+                    Wardrobe
                 </NavLink>
                 <NavLink to='/' className='nav-links' align="right" >
                     <img className='nav-cart' src={cart} />
+                    Cart
                 </NavLink>
 
             </div>
