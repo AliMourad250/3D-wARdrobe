@@ -6,25 +6,22 @@ const NavBar = () => {
     return (
         <>
             <div className='nav'>
-                <NavLink to='/' className='nav-links' activeStyle>
+                <NavLink to='/' className='nav-links'>
                     Home
                 </NavLink>
-                <NavLink to='/About' className='nav-links' activeStyle>
+                <NavLink to='/About' className='nav-links'>
                     About
                 </NavLink>
-                {/* <NavLink to="/Contact" className='nav-links' activeStyle>
+                <NavLink to='/Sign-Up' className='nav-links'>
+                    Sign Up
+                </NavLink>
+                <NavLink to="/Contact" className='nav-links' >
                     Contact Us
                 </NavLink>
-                <NavLink to="/blogs" className='nav-links' activeStyle>
-                    Blogs
-                </NavLink>
-                <NavLink to="/sign-up" className='nav-links' activeStyle>
-                    Sign Up
-                </NavLink> */}
-                <NavLink to='/' className='nav-links' align="right" activeStyle>
+                <NavLink to='/' className='nav-links' align="right" >
                     <img className='nav-cart' src={wardrobe} />
                 </NavLink>
-                <NavLink to='/' className='nav-links' align="right" activeStyle>
+                <NavLink to='/' className='nav-links' align="right" >
                     <img className='nav-cart' src={cart} />
                 </NavLink>
 
