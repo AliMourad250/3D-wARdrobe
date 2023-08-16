@@ -1,0 +1,7 @@
+skin colors (from lightest to darkest):
+    #8D5524
+    #C68642
+    #E0AC69
+    #F1C27D
+    #FFDBAC
+    

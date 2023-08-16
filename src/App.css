@@ -1,5 +1,9 @@
-body {
-  margin: 2em;
+body,
+html,
+:root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   /*background-color: rgb(217, 217, 217);*/
   background-color: #F5DD90;
   ;
@@ -29,7 +33,7 @@ body {
 
 .nav-cart {
 
-  width: 2em;
+  width: 2rem;
 
 }
 
@@ -37,59 +41,68 @@ body {
 
 .Home {
   display: flex;
+  justify-content: space-around;
+  /* padding-left: 2%; */
+  padding-right: 4%;
 }
 
 .Home-Avatar {
-  border-radius: 1em;
+  /* position: relative; */
+  background: url('- Zeffir Apartment-.jpg');
+  background-size: cover;
+  background-position: 0 60%;
+  background-blend-mode:multiply;
+  border-radius: 1rem;
   /*transform: skewX(-10deg);*/
-  margin: 2em;
-  margin-top: 2em;
+  max-width: 30%;
+  margin: 2rem;
+  margin-top: 2rem;
   flex: 1;
-  box-sizing: border-box;
-  padding: 5em;
+  /* box-sizing: border-box; */
+  /* padding: 5rem;
+  padding-top: 7rem; */
   background-color: #8FBFE0;
-  height: 40em;
+
 }
 
 .Home-Cloths {
-  margin-top: 5em;
-  margin-left: 2em;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
+  /* justify-self: center; */
 }
 
 
 .row {
   display: flex;
   justify-content: space-between;
+  gap: 3%;
 }
 
 .Home-Cloths-box-row-1 {
-  border-radius: 1em;
-  height: 10em;
-  width: 10em;
+  margin-top: -2rem;
+  border-radius: 1rem;
+  height: 5rem;
+  width: 100%;
   background-color: #EF959C;
-  padding: 3em;
+  padding: 3rem;
   transform: skewX(-10deg);
-  max-width: 20em;
-  max-height: 20em;
-  margin-left: 1em;
+  /* max-width: 40%;
+  max-height: 20rem; */
 
-  flex: 1;
+  /* flex: 1; */
 }
 
 .Home-Cloths-box-row-2 {
-  border-radius: 1em;
-  margin-top: 2em;
-  height: 10em;
-  width: 10em;
+  border-radius: 1rem;
+  height: 5rem;
+  width: 5rem;
   background-color: #EF959C;
-  padding: 3em;
+  padding: 3rem;
   transform: skewX(-10deg);
-  max-width: 20em;
-  max-height: 20em;
-  margin-left: 1em;
+  margin-top: 1rem;
+  /* max-width: 40%;
+  max-height: 20rem; */
 
-
-  flex: 1;
+  /* flex: 1; */
 }
