@@ -50,17 +50,14 @@ html,
   /* position: relative; */
   background: url('- Zeffir Apartment-.jpg');
   background-size: cover;
-  background-position: 0 60%;
-  background-blend-mode:multiply;
+  background-position: 0 -62px;
+  background-blend-mode: multiply;
   border-radius: 1rem;
   /*transform: skewX(-10deg);*/
-  max-width: 30%;
+  max-width: 300px;
   margin: 2rem;
   margin-top: 2rem;
   flex: 1;
-  /* box-sizing: border-box; */
-  /* padding: 5rem;
-  padding-top: 7rem; */
   background-color: #8FBFE0;
 
 }
@@ -80,13 +77,13 @@ html,
 }
 
 .Home-Cloths-box-row-1 {
-  margin-top: -2rem;
   border-radius: 1rem;
   height: 5rem;
-  width: 100%;
+  width: 5rem;
   background-color: #EF959C;
   padding: 3rem;
   transform: skewX(-10deg);
+  margin-top: -3rem;
   /* max-width: 40%;
   max-height: 20rem; */
 
@@ -100,7 +97,7 @@ html,
   background-color: #EF959C;
   padding: 3rem;
   transform: skewX(-10deg);
-  margin-top: 1rem;
+  margin-top: 2rem;
   /* max-width: 40%;
   max-height: 20rem; */
 
