@@ -80,7 +80,7 @@ html,
   border-radius: 1rem;
   height: 5rem;
   width: 5rem;
-  background-color: #EF959C;
+  background-color: rgba(216, 215, 215, 0.831);
   padding: 3rem;
   transform: skewX(-10deg);
   margin-top: -3rem;
@@ -94,7 +94,7 @@ html,
   border-radius: 1rem;
   height: 5rem;
   width: 5rem;
-  background-color: #EF959C;
+  background-color: rgba(216, 215, 215, 0.831);
   padding: 3rem;
   transform: skewX(-10deg);
   margin-top: 2rem;
@@ -102,4 +102,26 @@ html,
   max-height: 20rem; */
 
   /* flex: 1; */
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  /* justify-content: space-around; */
+  gap: 10rem;
+  /* margin-left: 20%;
+  margin-right: 20%; */
+  margin-top: 2%;
+}
+
+.footer-links {
+  color: #2A2D34;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: larger;
+}
+
+.footer-links:hover,
+.footer {
+  transform: translate(1px, -2px) rotate(-1deg);
 }
