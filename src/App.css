@@ -4,37 +4,51 @@ html,
   margin: 0;
   padding: 0;
   width: 100%;
-  /*background-color: rgb(217, 217, 217);*/
-  background-color: #F5DD90;
-  ;
+  background: rgb(105, 103, 74);
+  background: linear-gradient(119deg, rgba(105, 103, 74, 1) 18%, rgba(201, 189, 148, 1) 78%);
+  color: #000000;
 }
 
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+:root::-webkit-scrollbar {
+  display: none;
+}
+
+
 .nav {
+  width: 100%;
   display: flex;
   justify-content: center;
-  justify-content: space-between;
-  margin-left: 20%;
+  padding-top: 3px;
   margin-right: 20%;
-  margin-top: 2%;
+  border-radius: 5px;
+  background-color: #00000057;
+  box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
+  -webkit-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
 }
 
 .nav-links {
-  color: #2A2D34;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   font-size: larger;
+  padding: 4px 20px;
+  padding-top: 7px;
+  border-radius: 10px;
+  margin-bottom: -1px;
 }
 
-.nav-links:hover,
-.nav {
-  transform: translate(1px, -2px) rotate(-1deg);
+.nav-links:hover {
+  transform: translate(1px, -2px);
+  background-color: rgba(0, 0, 0, 0.265);
 }
 
 
 .nav-cart {
 
   width: 2rem;
-
 }
 
 
@@ -44,11 +58,12 @@ html,
   justify-content: space-around;
   /* padding-left: 2%; */
   padding-right: 4%;
+  margin-top: 5px;
 }
 
 .Home-Avatar {
   /* position: relative; */
-  background: url('- Zeffir Apartment-.jpg');
+  background: url('./imgs/- Zeffir Apartment-.jpg');
   background-size: cover;
   background-position: 0 -62px;
   background-blend-mode: multiply;
@@ -62,12 +77,7 @@ html,
 
 }
 
-.Home-Cloths {
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-  /* justify-self: center; */
-}
+
 
 
 .row {
@@ -76,25 +86,12 @@ html,
   gap: 3%;
 }
 
-.Home-Cloths-box-row-1 {
+.Home-Cloths-box-row {
   border-radius: 1rem;
   height: 5rem;
   width: 5rem;
-  background-color: rgba(216, 215, 215, 0.831);
-  padding: 3rem;
-  transform: skewX(-10deg);
-  margin-top: -3rem;
-  /* max-width: 40%;
-  max-height: 20rem; */
-
-  /* flex: 1; */
-}
-
-.Home-Cloths-box-row-2 {
-  border-radius: 1rem;
-  height: 5rem;
-  width: 5rem;
-  background-color: rgba(216, 215, 215, 0.831);
+  background: rgb(201, 189, 148);
+  background: linear-gradient(93deg, rgba(201, 189, 148, 0) 16%, rgba(255, 255, 255, 0.491) 30%);
   padding: 3rem;
   transform: skewX(-10deg);
   margin-top: 2rem;
@@ -107,21 +104,28 @@ html,
 .footer {
   display: flex;
   justify-content: center;
-  /* justify-content: space-around; */
   gap: 10rem;
-  /* margin-left: 20%;
-  margin-right: 20%; */
-  margin-top: 2%;
+  margin-top: 5px;
+  border-radius: 5px;
+  background-color: #00000057;
+  box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
+  -webkit-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
+  width: 100%;
+  padding: 14px 0;
+
 }
 
 .footer-links {
-  color: #2A2D34;
+  padding: 0 10px;
+  padding-top: 5px;
   text-decoration: none;
   font-weight: 500;
   font-size: larger;
+  border-radius: 10px;
 }
 
-.footer-links:hover,
-.footer {
+.footer-links:hover {
   transform: translate(1px, -2px) rotate(-1deg);
+  background-color: rgba(0, 0, 0, 0.265);
 }

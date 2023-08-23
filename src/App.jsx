@@ -1,9 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import NavBar from './NavBar';
-import Home from './Home';
-import Footer from 'Footer';
-import { Canvas } from '@react-three/fiber';
+import NavBar from './components/NavBar';
+import Home from './components/Home';
+import Footer from './components/Footer';;
 
 function App() {
   return (

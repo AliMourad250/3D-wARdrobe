@@ -1,5 +1,5 @@
-import cart from './cart.svg'
-import wardrobe from './wardrobe.svg'
+import cart from '../imgs/cart.svg';
+import wardrobe from '../imgs/wardrobe.svg';
 
 const NavBar = () => {
     return (
@@ -19,7 +19,4 @@ const NavBar = () => {
     )
 
 }
-
-
-
 export default NavBar;

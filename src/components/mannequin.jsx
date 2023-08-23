@@ -5,6 +5,11 @@ import { Suspense } from 'react';
 import { useLoader } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { useState, useEffect } from 'react';
+import * as CANNON from 'cannon-es';
+
+
+
+
 
 const Model = () => {
     return (
@@ -80,8 +85,9 @@ const ModelContent = () => {
     gltf.scene.scale.set(0.3, 0.3, 0.3);
     gltf.scene.position.set(0, -3.3, 0);
 
-    top.scene.scale.set(0.32, 0.3, 0.34);
-    top.scene.position.set(0, -1.48, 0.53);
+    top.scene.scale.set(0.304, 0.3, 0.35);
+    top.scene.position.set(-0.028, -1.514, 0.585);
+    top.scene.rotateX(-0.007);
 
 
     return (

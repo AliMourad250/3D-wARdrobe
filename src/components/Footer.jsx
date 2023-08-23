@@ -1,7 +1,7 @@
 
-import twitter from './twitter-svgrepo-com.svg';
-import insta from './insta-svgrepo-com.svg';
-import facebook from './facebook-svgrepo-com.svg';
+import twitter from '../imgs/twitter-svgrepo-com (1).svg';
+import insta from '../imgs/insta-svgrepo-com.svg';
+import facebook from '../imgs/facebook-svgrepo-com (1).svg';
 
 const Footer = () => {
     return (
