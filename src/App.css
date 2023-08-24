@@ -20,7 +20,7 @@ html::-webkit-scrollbar,
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 3px;
+  padding-top: 2px;
   margin-right: 20%;
   border-radius: 5px;
   background-color: #00000057;
@@ -77,7 +77,9 @@ html::-webkit-scrollbar,
 
 }
 
-
+.Home-Avatar:hover {
+  cursor: pointer;
+}
 
 
 .row {
@@ -95,10 +97,35 @@ html::-webkit-scrollbar,
   padding: 3rem;
   transform: skewX(-10deg);
   margin-top: 2rem;
+  position: relative;
+  /* justify-content: center; */
   /* max-width: 40%;
   max-height: 20rem; */
 
   /* flex: 1; */
+}
+
+.Home-Cloths-box-row:hover {
+  cursor: pointer;
+  background: linear-gradient(93deg, rgba(201, 189, 148, 0) 16%, rgba(186, 186, 186, 0.491) 30%);
+}
+
+.Home-Cloths-box-row img {
+  width: 6rem;
+  height: 6rem;
+  position: absolute;
+  top: 1rem;
+  left: 3.3rem;
+}
+
+.Home-Cloths-box-row p {
+  position: absolute;
+  bottom: 0rem;
+  left: 30%;
+  right: 10%;
+  text-align: center;
+  font-size: 15px;
+  justify-content: center;
 }
 
 .footer {
