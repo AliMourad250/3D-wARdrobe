@@ -13,7 +13,7 @@ import * as CANNON from 'cannon-es';
 
 const Model = () => {
     return (
-        <Canvas className='Home-Avatar' style={{ width: "20rem", height: "24rem" }}>
+        <Canvas className='Home-Avatar' style={{height: "550px"}}>
             <ambientLight intensity={0.3} />
             <pointLight position={[0, 0, 25]} intensity={500} />
             <pointLight position={[0, 0, -25]} intensity={500} />
