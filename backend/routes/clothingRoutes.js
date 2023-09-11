@@ -18,7 +18,7 @@ const thumbnailStorage = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
     }
-})
+});
 
 const uploadModel = multer({ storage: modelStorage });
 const uploadThumbnail = multer({ storage: thumbnailStorage });

@@ -18,13 +18,13 @@ const clothingSchema = new mongoose.Schema({
 
     path: {
         type: String,
-        required: true,
+        // required: true,
     },
     thumbnailPath: {
         type: String,
-        required: true,
+        // required: true,
     }
 });
-const Clothing = mongoose.model('Clothing', clothingSchema);
+const Clothing = mongoose.model('clothings', clothingSchema);
 
 module.exports = Clothing;
