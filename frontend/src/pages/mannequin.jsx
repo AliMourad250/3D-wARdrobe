@@ -50,38 +50,6 @@ const ModelContent = () => {
 
 
 
-    // Frontend code to store a clothing item
-    const addClothingItem = async () => {
-        const newItem = { name: 'New Clothing', path: '/path/to/your/clothing.jpg' };
-
-        try {
-            await fetch('/api/clothing', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newItem),
-            });
-
-            // Perform any necessary UI updates after saving
-        } catch (error) {
-            console.error('Error saving clothing item:', error);
-        }
-    };
-
-    // Frontend code to retrieve clothing items
-    const getClothingItems = async () => {
-        try {
-            const response = await fetch('/api/clothing');
-            if (response.ok) {
-                const clothingItems = await response.json();
-                // Use the retrieved clothing items in your UI
-            } else {
-                console.error('Failed to fetch clothing items');
-            }
-        } catch (error) {
-            console.error('Error fetching clothing items:', error);
-        }
-    };
-
     gltf.scene.scale.set(0.3, 0.3, 0.3);
     gltf.scene.position.set(0, -3.3, 0);
 
