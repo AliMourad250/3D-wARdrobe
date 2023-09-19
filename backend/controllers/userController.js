@@ -24,10 +24,16 @@ exports.login = async (req, res) => {
         if (!user) {
             return res.status(400).json({ error: 'Invalid email or password.' });
         };
-        const token = jwt.sign({ id: user.id, role: user }, process.env.JWT_SECRET_USER, {
+
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatch) {
+            return res.status(400).json({ error: 'Invalid email or password.' });
+        }
+
+        const token = jwt.sign({ id: user._id, role: user }, process.env.JWT_SECRET_USER, {
             expiresIn: 86400,
         });
-        res.json({ success: true, token, id: user._id });
+        res.json({ success: true, token });
     } catch (error) {
         console.error("Login Error: ", error.message);
         res.status(400).json({ success: false, message: error.message });

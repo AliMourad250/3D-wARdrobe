@@ -17,24 +17,29 @@
 #login-box {
     position: relative;
     margin: 0 auto;
-    margin-top: 80px;
-    margin-bottom: 105px;
-    width: 600px;
-    height: 400px;
+    margin-top: 140px;
+    margin-bottom: 100px;
+    width: 300px;
+    height: 350px;
     background: #FFF;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
+.login {
+    height: 300px !important;
+    margin-bottom: 150px !important;
+}
+
 .left {
-    position: absolute;
-    top: 0;
-    left: 0;
+    margin: 0 auto;
     box-sizing: border-box;
     padding: 40px;
     width: 300px;
     height: 400px;
 }
+
+
 
 h1 {
     margin: 0 0 20px 0;

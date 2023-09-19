@@ -4,6 +4,8 @@ html,
   margin: 0;
   padding: 0;
   width: 100%;
+  top: 0;
+  bottom: 0;
   background: linear-gradient(119deg, rgba(105, 103, 74, 1) 18%, rgba(201, 189, 148, 1) 78%);
   color: #000000;
 }
@@ -20,7 +22,7 @@ html::-webkit-scrollbar,
 .nav {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 5px;
@@ -30,13 +32,31 @@ html::-webkit-scrollbar,
   -moz-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
 }
 
-.nav-links {
+.nav-logo {
+  margin-left: 5.5%;
+  padding: 5px 1px;
+  margin-top: -6px;
+}
+
+.logo {
+  background: none;
+  width: 275px;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin-right: 5%;
+}
+
+.nav-links,
+.nav-logo {
   color: #ffffff;
   background: none;
   text-decoration: none;
   font-weight: 500;
   font-size: 25px;
-  padding: 4px 3%;
   padding-top: 7px;
   border-radius: 10px;
   border: none;
@@ -44,23 +64,50 @@ html::-webkit-scrollbar,
   cursor: pointer;
 }
 
+.nav-links {
+  padding: 3px 9px;
+  margin-right: 20px;
+}
+
 .nav-links:hover {
   transform: translate(1px, -2px);
   background-color: rgba(0, 0, 0, 0.265);
 }
 
-
-.nav-cart {
-
-  width: 35px;
+.logout{
+  background-color: rgba(255, 0, 0, 0.558);
 }
 
 
+.nav-cart {
+  width: 35px;
+}
+
+.ar-button {
+  background: none;
+  border: none;
+  position: absolute;
+  left: 435px;
+  top: 112px;
+  z-index: 100;
+  background-color: #ffffff77;
+  border-radius: 30px;
+  cursor: pointer;
+  padding-top: 3px;
+}
+
+.ar-button:hover {
+  background-color: #8888885b;
+}
+
+.ar-button img {
+  width: 50px;
+}
 
 .Home {
   display: flex;
   justify-content: space-evenly;
-  margin:0 3%;
+  margin: 0 3%;
   padding-right: 2%;
   gap: 20px;
 }

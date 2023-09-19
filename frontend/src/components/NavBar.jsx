@@ -1,7 +1,7 @@
 import cart from '../imgs/cart.svg';
 import wardrobe from '../imgs/wardrobe.svg';
 import logo from '../imgs/logo.png';
-import Footer from './Footer';
+import Auth from '../Auth';
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
 
 const NavBar = () => {
@@ -10,21 +10,17 @@ const NavBar = () => {
     const location = useLocation();
 
     const handleNavigation = (path) => {
-        if (path === "/home") {
-            navigate("/home");
-            return
+        if (path === "/home" && !Auth.isAuthenticated()) {
+            navigate("/login");
+            return;
         }
-        if (path === "/signup") {
-            navigate("/signup");
-            return
+        if ((path === "/signup" || path === "/login") && Auth.isAuthenticated()) {
+            navigate("/home");
+            return;
         }
         if (path === "/about") {
             navigate("/about");
-            return
-        }
-        if (path === "/contact") {
-            navigate("/contact");
-            return
+            return;
         }
 
         if (path !== location.pathname) {
@@ -32,19 +28,28 @@ const NavBar = () => {
         }
     }
 
+    const handleLogout = () => {
+        Auth.deAuthenticate();
+        navigate("/login");
+    }
+
     return (
+        <>
 
-        <div className="nav">
+            <div className="nav">
+                <button className='nav-logo' onClick={() => handleNavigation("/home")} > <img className='logo' src={logo} /></button>
+                <div className="nav-right">
+                    <button className='nav-links' onClick={() => handleNavigation("/home")}>Home</button>
+                    <button className='nav-links' onClick={() => handleNavigation("/about")}>About</button>
+                    <button className='nav-links' onClick={() => handleNavigation("/signup")} style={{ display: Auth.isAuthenticated() ? "none" : "block" }}>Sign up</button>
+                    <button className='nav-links' onClick={() => handleNavigation("/login")} style={{ display: Auth.isAuthenticated() ? "none" : "block" }}>Login</button>
+                    <button className='nav-links' > <img className='nav-cart' src={wardrobe} />    </button>
+                    <button className='nav-links' > <img className='nav-cart' src={cart} />    </button>
+                    <button className='nav-links logout' onClick={handleLogout} style={{ display: Auth.isAuthenticated() ? "block" : "none" }}>Logout</button>
+                </div>
+            </div>
+        </>
 
-            <button className='nav-links' onClick={() => handleNavigation("/home")}>Home</button>
-            <button className='nav-links' >About</button>
-            <button className='nav-links' >logo</button>
-            <button className='nav-links' >Contact</button>
-            <button className='nav-links' onClick={() => handleNavigation("/signup")}>Sign up</button>
-            <button className='nav-links' > <img className='nav-cart' src={wardrobe} />    </button>
-            <button className='nav-links' > <img className='nav-cart' src={cart} />    </button>
-
-        </div>
 
     )
 

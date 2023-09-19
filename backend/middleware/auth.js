@@ -11,7 +11,7 @@ module.exports = {
                 error: 'Failed to authenticate token.'
             })
             req.userId = decoded.id;
-            req.userRole = decoded.role;
+            req.role = decoded.role;
             next();
         })
     },
@@ -26,7 +26,7 @@ module.exports = {
                 error: 'Failed to authenticate token.'
             })
             req.adminId = decoded.id;
-            req.adminRole = decoded.role;
+            req.role = decoded.role;
             next();
         })
     }

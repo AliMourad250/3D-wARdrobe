@@ -4,7 +4,7 @@ exports.addToWishlist = async (userId, clothingId) => {
     try {
         const wishlistItem = new Wishlist({ userId, clothingId });
         await wishlistItem.save();
-        return { success: true, message: "Item Added To Wihslist!" };
+        return { success: true, message: "Item Added To Wishlist!" };
     } catch (error) {
         console.error("Wishlist Item Adding Error: ", error.message)
         return { success: false, message: error.message };

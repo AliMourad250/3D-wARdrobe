@@ -1,28 +1,26 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import './Sign-Up.css';
 
 const SignUp = () => {
+    const { email, setEmail } = useState("");
+    const { password, setPassword } = useState("");
+    const { passwordConfirmed, setPasswordConfirmed } = useState("");
+
+    
+
     return (
         <>
             <div id="login-box">
                 <div className="left">
                     <h1>Sign up</h1>
 
-                    <input type="email" name="email" placeholder="E-mail" />
-                    <input type="password" name="password" placeholder="Password" />
-                    <input type="password" name="password2" placeholder="Retype password" />
+                    <input type="email" name="email" value={email} placeholder="E-mail" />
+                    <input type="password" name="password" value={password} placeholder="Password" />
+                    <input type="password" name="passwordConfrimed" value={passwordConfirmed} placeholder="Confirm password" />
 
                     <input type="submit" name="signup_submit" value="Sign me up" />
                 </div>
-
-                <div className="right">
-                    <span className="loginwith">Sign in with<br />social network</span>
-
-                    <button className="social-signin facebook">Log in with facebook</button>
-                    <button className="social-signin twitter">Log in with Twitter</button>
-                    <button className="social-signin google">Log in with Google+</button>
-                </div>
-                <div className="or">OR</div>
             </div>
         </>
     );

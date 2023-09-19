@@ -13,7 +13,8 @@ import * as CANNON from 'cannon-es';
 
 const Model = () => {
     return (
-        <Canvas className='Home-Avatar' style={{height: "550px"}}>
+        <Canvas className='Home-Avatar' style={{ height: "550px" }}>
+            
             <ambientLight intensity={0.3} />
             <pointLight position={[0, 0, 25]} intensity={500} />
             <pointLight position={[0, 0, -25]} intensity={500} />
@@ -33,9 +34,8 @@ const ModelContent = () => {
     const gltf = useLoader(GLTFLoader, gltfPath);
     const top = useLoader(GLTFLoader, topPath);
 
-    const [clothingPath, setClothingPath] = useState(''); // State to hold clothing path
+    const [clothingPath, setClothingPath] = useState('');
 
-    // Function to set the clothing path when an item is clicked
     const setMannequinClothingPath = (newClothingPath) => {
         setClothingPath(newClothingPath);
     };
@@ -43,11 +43,9 @@ const ModelContent = () => {
 
     gltf.scene.traverse((child) => {
         if (child.isMesh) {
-            // Change color of the material
-            child.material.color.set("#FFDBAC"); // Set to red color
+            child.material.color.set("#FFDBAC");
         }
     });
-
 
 
     gltf.scene.scale.set(0.3, 0.3, 0.3);
@@ -62,7 +60,8 @@ const ModelContent = () => {
         <>
             <primitive object={gltf.scene} />
             <primitive object={top.scene} clothingPath={clothingPath} />
-        </>);
+        </>
+    );
 };
 
 export default Model;
