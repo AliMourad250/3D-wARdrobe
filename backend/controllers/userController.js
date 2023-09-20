@@ -6,9 +6,9 @@ const wishlistController = require('./wishlistController');
 
 exports.signup = async (req, res) => {
     const { email, password } = req.body;
-    const hashedPassword = bcrypt.hashSync(passsword);
+    const hashedPassword = bcrypt.hashSync(password);
     try {
-        const newUser = new User({ email, password });
+        const newUser = new User({ email, password: hashedPassword });
         await newUser.save();
         res.status(200).json({ success: true, message: "User Registered successfully!" })
     } catch (error) {

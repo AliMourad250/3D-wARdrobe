@@ -1,13 +1,64 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import api from "../api";
 import './Sign-Up.css';
+import Auth from "Auth";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-    const { email, setEmail } = useState("");
-    const { password, setPassword } = useState("");
-    const { passwordConfirmed, setPasswordConfirmed } = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirmed, setPasswordConfirmed] = useState("");
+    const [err, setErr] = useState("");
+    const navigate = useNavigate();
 
-    
+    useEffect(() => {
+        if (Auth.isAuthenticated()) {
+            navigate("/home");
+        }
+    }, [navigate]);
+
+    const handleSignup = async (role) => {
+        if (!email || !password || !passwordConfirmed) {
+            setErr("all fields must be filled!")
+            return;
+        }
+        if (password !== passwordConfirmed) {
+            setErr("password fields must be matching!");
+            return;
+        }
+        setErr("");
+        if (role === "user") {
+            try {
+                const response = await api.post("/users/signup", {
+                    email,
+                    password,
+                });
+                if (response.data.success) {
+                    Auth.authenticate(response.data.token, role);
+                    navigate("/home");
+                }
+            } catch (error) {
+                setErr(error.response.data.message || "Signup failed.");
+            }
+        }
+
+        else if (role === "admin") {
+            try {
+                const response = await api.post("/admins/signup", {
+                    email,
+                    password,
+                });
+                if (response.data.success) {
+                    Auth.authenticate(response.data.token, role);
+                    navigate("/home");
+                }
+            } catch (error) {
+                setErr(error.response.data.message || "Signup failed.");
+            }
+        }
+
+    }
 
     return (
         <>
@@ -15,11 +66,39 @@ const SignUp = () => {
                 <div className="left">
                     <h1>Sign up</h1>
 
-                    <input type="email" name="email" value={email} placeholder="E-mail" />
-                    <input type="password" name="password" value={password} placeholder="Password" />
-                    <input type="password" name="passwordConfrimed" value={passwordConfirmed} placeholder="Confirm password" />
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        placeholder="E-mail"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required={true} />
 
-                    <input type="submit" name="signup_submit" value="Sign me up" />
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required={true} />
+
+                    <input
+                        type="password"
+                        name="passwordConfrimed"
+                        value={passwordConfirmed}
+                        placeholder="Confirm password"
+                        onChange={(e) => setPasswordConfirmed(e.target.value)}
+                        required={true} />
+
+                    {err && <div style={{ color: "red", fontSize: "12px" }}>
+                        {err}
+                    </div>}
+
+                    <input
+                        type="submit"
+                        name="signup_submit"
+                        value="Sign me up"
+                        onClick={() => handleSignup("user")} />
                 </div>
             </div>
         </>
