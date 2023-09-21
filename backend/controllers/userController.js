@@ -30,16 +30,19 @@ exports.login = async (req, res) => {
             return res.status(400).json({ error: 'Invalid email or password.' });
         }
 
-        const token = jwt.sign({ id: user._id, role: user }, process.env.JWT_SECRET_USER, {
+        const token = jwt.sign({ id: user._id, role: "user" }, process.env.JWT_SECRET_USER, {
             expiresIn: 86400,
         });
-        res.json({ success: true, token });
+        res.status(200).json({ success: true, token});
     } catch (error) {
         console.error("Login Error: ", error.message);
         res.status(400).json({ success: false, message: error.message });
     }
 }
 
+exports.getTokenAndRole = async (req, res) => {
+
+}
 
 exports.addToUserWishlist = async (req, res) => {
     const { userId } = req.userId;

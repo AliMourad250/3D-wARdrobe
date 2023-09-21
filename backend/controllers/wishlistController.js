@@ -15,7 +15,7 @@ exports.getWishlist = async (req, res) => {
     const { userId } = req.params;
     try {
         const userWishlist = await Wishlist.find({ userId }).populate("clothingId");
-        res.status(200).json({ success: true, userWishlist });
+        res.json({ success: true, userWishlist });
     } catch (error) {
         console.error("Wishlist Retrieval Error: ", error.message);
         res.status(500).json({ success: false, message: error.message });

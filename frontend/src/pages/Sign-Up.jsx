@@ -35,8 +35,7 @@ const SignUp = () => {
                     password,
                 });
                 if (response.data.success) {
-                    Auth.authenticate(response.data.token, role);
-                    navigate("/home");
+                    navigate("/login");
                 }
             } catch (error) {
                 setErr(error.response.data.message || "Signup failed.");
@@ -50,14 +49,12 @@ const SignUp = () => {
                     password,
                 });
                 if (response.data.success) {
-                    Auth.authenticate(response.data.token, role);
-                    navigate("/home");
+                    navigate("/login");
                 }
             } catch (error) {
                 setErr(error.response.data.message || "Signup failed.");
             }
         }
-
     }
 
     return (
@@ -70,7 +67,7 @@ const SignUp = () => {
                         type="email"
                         name="email"
                         value={email}
-                        placeholder="E-mail"
+                        placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                         required={true} />
 

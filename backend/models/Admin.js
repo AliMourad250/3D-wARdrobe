@@ -6,10 +6,16 @@ const adminSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+
     password: {
         type: String,
         required: true,
     },
+
+    token: {
+        type: String,
+    },
+
     role: {
         type: String,
         enum: ['admin'], // For regular users

@@ -43,7 +43,7 @@ const ModelContent = () => {
 
     gltf.scene.traverse((child) => {
         if (child.isMesh) {
-            child.material.color.set("#FFDBAC");
+            child.material.color.set("#8D5524");
         }
     });
 

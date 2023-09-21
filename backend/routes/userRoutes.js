@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.post('/login', userController.login);
 router.post('/signup', userController.signup);
-router.post('/addToWishlist', userController.addToUserWishlist)
+router.post('/addToWishlist', userController.addToUserWishlist);
+router.get('/getTokenAndRole/:userToken', userController.getTokenAndRole);
 
 router.use('/home', auth.verifyUserToken);
 
