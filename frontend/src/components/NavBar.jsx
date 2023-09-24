@@ -10,11 +10,11 @@ const NavBar = () => {
     const location = useLocation();
 
     const handleNavigation = (path) => {
-        if (path === "/home" && !Auth.isAuthenticated()) {
+        if (path === "/home" && !Auth.isAuth) {
             navigate("/login");
             return;
         }
-        if ((path === "/signup" || path === "/login") && Auth.isAuthenticated()) {
+        if ((path === "/signup" || path === "/login") && Auth.isAuth) {
             navigate("/home");
             return;
         }
@@ -41,11 +41,11 @@ const NavBar = () => {
                 <div className="nav-right">
                     <button className='nav-links' onClick={() => handleNavigation("/home")}>Home</button>
                     <button className='nav-links' onClick={() => handleNavigation("/about")}>About</button>
-                    <button className='nav-links' onClick={() => handleNavigation("/signup")} style={{ display: Auth.isAuthenticated() ? "none" : "block" }}>Sign up</button>
-                    <button className='nav-links' onClick={() => handleNavigation("/login")} style={{ display: Auth.isAuthenticated() ? "none" : "block" }}>Login</button>
+                    <button className='nav-links' onClick={() => handleNavigation("/signup")} style={{ display: Auth.isAuth ? "none" : "block" }}>Sign up</button>
+                    <button className='nav-links' onClick={() => handleNavigation("/login")} style={{ display: Auth.isAuth ? "none" : "block" }}>Login</button>
                     <button className='nav-links' > <img className='nav-cart' src={wardrobe} />    </button>
                     <button className='nav-links' > <img className='nav-cart' src={cart} />    </button>
-                    <button className='nav-links logout' onClick={handleLogout} style={{ display: Auth.isAuthenticated() ? "block" : "none" }}>Logout</button>
+                    <button className='nav-links logout' onClick={handleLogout} style={{ display: Auth.isAuth ? "block" : "none" }}>Logout</button>
                 </div>
             </div>
         </>

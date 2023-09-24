@@ -33,7 +33,8 @@ exports.login = async (req, res) => {
         const token = jwt.sign({ id: user._id, role: "user" }, process.env.JWT_SECRET_USER, {
             expiresIn: 86400,
         });
-        res.status(200).json({ success: true, token});
+        await User.updateOne({ "_id": user._id }, { $set: { "token": token } });
+        res.status(200).json({ success: true, token });
     } catch (error) {
         console.error("Login Error: ", error.message);
         res.status(400).json({ success: false, message: error.message });
@@ -41,7 +42,20 @@ exports.login = async (req, res) => {
 }
 
 exports.getTokenAndRole = async (req, res) => {
+    const { email } = req.body;
 
+    try {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({ error: 'Invalid email or password.' });
+        };
+
+        res.status(200).json({ role: user.role, token: user.token });
+
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
 }
 
 exports.addToUserWishlist = async (req, res) => {

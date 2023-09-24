@@ -12,7 +12,7 @@ const LogIn = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (Auth.isAuthenticated()) {
+        if (Auth.isAuth === true) {
             navigate("/home");
         }
     }, [navigate]);
@@ -32,7 +32,12 @@ const LogIn = () => {
                 });
                 if (response.data.success) {
                     Auth.authenticate(response.data.token, role);
+                }
+                if (Auth.isAuthenticated(email)) {
+                    Auth.isAuth = true;
                     navigate("/home");
+                } else {
+                    Auth.isAuth = false;
                 }
             } catch (error) {
                 setErr(error.response.data.message || "Login failed.");
@@ -65,7 +70,7 @@ const LogIn = () => {
                         type="email"
                         name="email"
                         value={email}
-                        placeholder="E-mail"
+                        placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                         required={true} />
 
@@ -81,7 +86,11 @@ const LogIn = () => {
                         {err}
                     </div>}
 
-                    <input type="submit" name="login_submit" value="Log me in" onClick={() => handleLogin("user")} />
+                    <input
+                        type="submit"
+                        name="login_submit"
+                        value="Log me in"
+                        onClick={() => handleLogin("user")} />
 
 
                 </div>

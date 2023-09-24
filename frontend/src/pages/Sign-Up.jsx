@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import api from "../api";
 import './Sign-Up.css';
-import Auth from "Auth";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -12,11 +11,7 @@ const SignUp = () => {
     const [err, setErr] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (Auth.isAuthenticated()) {
-            navigate("/home");
-        }
-    }, [navigate]);
+
 
     const handleSignup = async (role) => {
         if (!email || !password || !passwordConfirmed) {

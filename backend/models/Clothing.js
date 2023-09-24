@@ -19,16 +19,17 @@ const clothingSchema = new mongoose.Schema({
 
     size: {
         type: String,
+        enum: ['S', 'M', 'L', 'XL', 'XL'],
         required: true,
     },
 
     path: {
         type: String,
-        // required: true,
+        required: true,
     },
     thumbnailPath: {
         type: String,
-        // required: true,
+        required: true,
     }
 });
 const Clothing = mongoose.model('clothings', clothingSchema);

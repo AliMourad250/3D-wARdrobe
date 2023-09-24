@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post("/login", adminController.login);
 router.post("/signup", adminController.signup);
+router.post('/getTokenAndRole', adminController.getTokenAndRole);
 
 router.use('/home', auth.verifyAdminToken);
 

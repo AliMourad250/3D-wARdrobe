@@ -5,14 +5,14 @@ import whiteShirt from '../imgs/white shirt.jpg';
 import whiteShirt1 from '../imgs/white shirt(1).jpg';
 import orangeTshirt from '../imgs/orange Tshirt.jpg';
 import greyPants from '../imgs/grey pants.jpg';
-import arButton from '../imgs/augmented-reality.png'
+import { useState } from 'react';
 
 
 
 const Home = () => {
+
     return (
         <div className='home-container'>
-            <button className='ar-button'><img src={arButton} /></button>
             <div className="Home">
                 <Model />
                 <div className="Home-Cloths">

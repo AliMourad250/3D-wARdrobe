@@ -13,7 +13,7 @@ import {
 import Auth from './Auth';
 
 function PrivateRoute({ children }) {
-  if (!Auth.isAuthenticated()) {
+  if (!Auth.isAuth) {
     return <Navigate to="/login" replace />
   }
   return children;

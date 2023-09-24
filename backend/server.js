@@ -6,6 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const clothingRoutes = require("./routes/clothingRoutes");
 const wishlistRoutes = require("./routes/wishlistRoutes");
+const mannequinRoutes = require("./routes/mannequinRoutes");
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -39,6 +40,7 @@ app.use("/api/admins", adminRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/clothings", clothingRoutes);
 app.use("/api/wishlists", wishlistRoutes);
+app.use("/api/mannequins", mannequinRoutes);
 
 
 app.listen(PORT, () => {

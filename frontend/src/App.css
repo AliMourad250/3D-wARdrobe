@@ -6,7 +6,10 @@ html,
   width: 100%;
   top: 0;
   bottom: 0;
-  background: linear-gradient(119deg, rgba(105, 103, 74, 1) 18%, rgba(201, 189, 148, 1) 78%);
+  background: linear-gradient(315deg, #0b151f, #0d1924);
+  box-shadow: -39px -39px 78px #091118,
+    39px 39px 78px #0f1d2c;
+  /* background: linear-gradient(119deg, rgba(105, 103, 74, 1) 18%, rgba(201, 189, 148, 1) 78%); */
   color: #000000;
 }
 
@@ -26,7 +29,7 @@ html::-webkit-scrollbar,
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 5px;
-  background-color: #1717174f;
+  background-color: #2727276f;
   box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
   -webkit-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
   -moz-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
