@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
         });
 
         await newClothing.save();
-        await res.json(newClothing);
+        res.status(200).json({ success: true, message: "Clothing file successfully uploaded!" });
     } catch (err) {
         res.status(400).json({ error: err.message });
     }

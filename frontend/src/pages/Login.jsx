@@ -11,8 +11,9 @@ const LogIn = () => {
     const [err, setErr] = useState("");
     const navigate = useNavigate();
 
-    Auth.setIsAuth();
+    
     useEffect(() => {
+        Auth.setIsAuth();
         if (Auth.isAuth) {
             navigate("/home");
         }

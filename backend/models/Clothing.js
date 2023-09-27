@@ -29,7 +29,6 @@ const clothingSchema = new mongoose.Schema({
     },
     thumbnailPath: {
         type: String,
-        required: true,
     }
 });
 const Clothing = mongoose.model('clothings', clothingSchema);
