@@ -9,13 +9,14 @@ import arButton from '../imgs/augmented-reality.png'
 import api from '../api';
 
 const ModelContent = () => {
-    const malePath = '/models/Male.glb';
+    // const malePath = '/models/Male.glb';
+    const malePath = '../models/Male.glb';
     const male = useLoader(GLTFLoader, malePath);
 
-    const topPath = '/models/new-top.glb';
+    const topPath = '../models/new-top.glb';
     const top = useLoader(GLTFLoader, topPath);
 
-    const bottomPath = '/models/new-bottom.glb'
+    const bottomPath = '../models/new-bottom.glb'
     const bottom = useLoader(GLTFLoader, bottomPath);
 
     let maleScene, topScene, bottomScene;

@@ -4,7 +4,6 @@ const mannequinSchema = new mongoose.Schema({
     bodyShape: {
         type: String,
         required: true,
-        unique: true,
     },
 
     path: {

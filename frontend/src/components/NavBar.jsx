@@ -14,7 +14,7 @@ const NavBar = () => {
             navigate("/login");
             return;
         }
-        if ((path === "/signup" || path === "/login") && Auth.isAuth) {
+        if ((path === "/signup" || path === "/login") && Auth.isAuth ) {
             navigate("/home");
             return;
         }

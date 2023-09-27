@@ -6,11 +6,12 @@ import whiteShirt1 from '../imgs/white shirt(1).jpg';
 import orangeTshirt from '../imgs/orange Tshirt.jpg';
 import greyPants from '../imgs/grey pants.jpg';
 import { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
+import Auth from '../Auth';
 
 
 const Home = () => {
-
+    const navigate = useNavigate();
     return (
         <div className='home-container'>
             <div className="Home">

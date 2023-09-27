@@ -11,11 +11,25 @@ const LogIn = () => {
     const [err, setErr] = useState("");
     const navigate = useNavigate();
 
+    Auth.setIsAuth();
     useEffect(() => {
-        if (Auth.isAuth === true) {
+        if (Auth.isAuth) {
             navigate("/home");
         }
+        else if (!Auth.isAuth) {
+            navigate("/login");
+        }
+    }, []);
+
+    useEffect(() => {
+        if (Auth.isAuth) {
+            navigate("/home");
+        }
+        else if (!Auth.isAuth) {
+            navigate("/login");
+        }
     }, [navigate]);
+
 
     const handleLogin = async (role) => {
         if (!email || !password) {
@@ -31,13 +45,9 @@ const LogIn = () => {
                     password,
                 });
                 if (response.data.success) {
-                    Auth.authenticate(response.data.token, role);
-                }
-                if (Auth.isAuthenticated(email)) {
-                    Auth.isAuth = true;
+                    Auth.authenticate(response.data.token, role, email);
+                    Auth.isAuth=true;
                     navigate("/home");
-                } else {
-                    Auth.isAuth = false;
                 }
             } catch (error) {
                 setErr(error.response.data.message || "Login failed.");
@@ -51,7 +61,7 @@ const LogIn = () => {
                     password,
                 });
                 if (response.data.success) {
-                    Auth.authenticate(response.data.token, role);
+                    Auth.authenticate(response.data.token, role, email);
                     navigate("/home");
                 }
             } catch (error) {
@@ -91,7 +101,6 @@ const LogIn = () => {
                         name="login_submit"
                         value="Log me in"
                         onClick={() => handleLogin("user")} />
-
 
                 </div>
             </div>

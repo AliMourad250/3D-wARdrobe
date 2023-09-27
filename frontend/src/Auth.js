@@ -1,45 +1,50 @@
 import api from './api'
 
 
+
 class Auth {
 
-    static isAuth;
+    static isAuth = this.setIsAuth();
 
-    static authenticate(token, role) {
+    static async setIsAuth() {
+        const localEmail = localStorage.getItem("email");
+        if (localEmail !== null) {
+            try {
+                const result = await api.post("/users/getTokenAndRole", { email: localEmail });
+                if (!result) {
+                    console.error("Email not found!");
+                    this.isAuth = false;
+                    return this.isAuth;
+                }
+                this.isAuth = localStorage.getItem("token") === result.data.token && localStorage.getItem("role") === result.data.role;
+                return this.isAuth;
+            } catch (err) {
+                console.error(err.result.data.message);
+                this.isAuth = false;
+                return this.isAuth;
+            }
+        } else {
+            this.isAuth = false;
+            return this.isAuth;
+        };
+    };
+
+
+    static authenticate(token, role, email) {
         localStorage.setItem("token", token);
         localStorage.setItem("role", role);
-    }
-
-    static async isAuthenticated(email) {
-        try {
-            const result = await api.post("/users/getTokenAndRole", { email });
-            if (!result) {
-                console.error("Email not found!");
-                return;
-            }
-            Auth.isAuth = (localStorage.getItem("token") === result.data.token && localStorage.getItem("role") === result.data.role);
-            return Auth.isAuth;
-        } catch (err) {
-            return;
-        }
-    }
-
-
-
-
-    static getRole() {
-        return localStorage.getItem("role");
-    }
-
-    static getToken() {
-        return localStorage.getItem("token");
+        localStorage.setItem("email", email);
     }
 
     static deAuthenticate() {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
-        Auth.isAuth = false;
+        localStorage.removeItem("email");
+        this.isAuth = false;
     }
 }
+// Auth.setIsAuth();
+console.log(localStorage.getItem("email"));
+console.log(Auth.isAuth);
 
 export default Auth;
