@@ -16,7 +16,7 @@ class Auth {
                     this.isAuth = false;
                     return this.isAuth;
                 }
-                this.isAuth = localStorage.getItem("token") === result.data.token && localStorage.getItem("role") === result.data.role;
+                this.isAuth = (localStorage.getItem("token") === result.data.token) && (localStorage.getItem("role") === result.data.role);
                 return this.isAuth;
             } catch (err) {
                 console.error(err.result.data.message);

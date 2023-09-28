@@ -21,7 +21,7 @@ exports.create = async (req, res) => {
         await newClothing.save();
         res.status(200).json({ success: true, message: "Clothing file successfully uploaded!" });
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ message: err.message });
     }
 }
 
@@ -30,7 +30,7 @@ exports.fetchAll = async (req, res) => {
         const clothing = await Clothing.find();
         res.json({ clothing });
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ message: err.message });
     }
 }
 
@@ -40,7 +40,7 @@ exports.filterByType = async (req, res) => {
         const clothing = await Clothing.find({ type });
         res.json({ clothing });
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ message: err.message });
     }
 }
 
@@ -50,7 +50,7 @@ exports.delete = async (req, res) => {
         await Clothing.findByIdAndDelete(clothingId);
         res.status(200).json({ message: 'Clothing deleted successfully.' });
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ message: err.message });
     }
 }
 
@@ -71,6 +71,6 @@ exports.update = async (req, res) => {
         await clothing.save();
         res.status(200).json({ message: 'Clothing updated successfully.' });
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ message: err.message });
     }
 }

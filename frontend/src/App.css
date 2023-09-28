@@ -111,7 +111,7 @@ html::-webkit-scrollbar,
   display: flex;
   justify-content: space-evenly;
   margin: 0 3%;
-  padding-right: 2%;
+
   gap: 20px;
 }
 
@@ -130,6 +130,16 @@ html::-webkit-scrollbar,
   cursor: pointer;
 }
 
+.Home-Cloths {
+  overflow-y: scroll;
+  padding-right: 2%;
+  max-height: 580px;
+  max-width: 100%;
+}
+
+.Home-Cloths::-webkit-scrollbar {
+  display: none;
+}
 
 .row {
   display: flex;

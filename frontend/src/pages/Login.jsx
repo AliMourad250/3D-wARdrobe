@@ -11,7 +11,7 @@ const LogIn = () => {
     const [err, setErr] = useState("");
     const navigate = useNavigate();
 
-    
+
     useEffect(() => {
         Auth.setIsAuth();
         if (Auth.isAuth) {
@@ -47,7 +47,7 @@ const LogIn = () => {
                 });
                 if (response.data.success) {
                     Auth.authenticate(response.data.token, role, email);
-                    Auth.isAuth=true;
+                    Auth.isAuth = true;
                     navigate("/home");
                 }
             } catch (error) {
@@ -102,7 +102,6 @@ const LogIn = () => {
                         name="login_submit"
                         value="Log me in"
                         onClick={() => handleLogin("user")} />
-
                 </div>
             </div>
         </>
