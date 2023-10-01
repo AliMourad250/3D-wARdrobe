@@ -4,12 +4,15 @@ html,
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 100vh;
   top: 0;
   bottom: 0;
   background: linear-gradient(315deg, #0b151f, #0d1924);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
   box-shadow: -39px -39px 78px #091118,
     39px 39px 78px #0f1d2c;
-  /* background: linear-gradient(119deg, rgba(105, 103, 74, 1) 18%, rgba(201, 189, 148, 1) 78%); */
   color: #000000;
 }
 
@@ -86,17 +89,39 @@ html::-webkit-scrollbar,
   width: 35px;
 }
 
+.delete-button {
+  background: none;
+  border: none;
+  position: absolute;
+  background-color: #ffffff77;
+  border-radius: 30px;
+  cursor: pointer;
+  padding-top: 3px;
+  z-index: 100;
+  left: 4%;
+  top: 84%;
+}
+
+.delete-button:hover {
+  background-color: #7802026e;
+}
+
+.delete-button img {
+  width: 50px;
+}
+
 .ar-button {
   background: none;
   border: none;
   position: absolute;
-  left: 435px;
-  top: 112px;
+  left: 30%;
+  top: 6%;
   z-index: 100;
   background-color: #ffffff77;
   border-radius: 30px;
   cursor: pointer;
   padding-top: 3px;
+  display: none;
 }
 
 .ar-button:hover {
@@ -111,7 +136,7 @@ html::-webkit-scrollbar,
   display: flex;
   justify-content: space-evenly;
   margin: 0 3%;
-
+  position: relative;
   gap: 20px;
 }
 
@@ -119,6 +144,7 @@ html::-webkit-scrollbar,
   background: url('./imgs/- Zeffir Apartment-.jpg');
   background-size: cover;
   background-position: 0 -62px;
+  background-position: center;
   background-blend-mode: multiply;
   border-radius: 10px;
   max-width: 420px;
@@ -151,6 +177,7 @@ html::-webkit-scrollbar,
   border-radius: 15px;
   height: 151px;
   width: 140px;
+  max-width: 140px;
   background: linear-gradient(93deg, rgba(201, 189, 148, 0) 16%, rgba(255, 255, 255, 0.491) 30%);
   padding: 50px;
   transform: skewX(-10deg);
@@ -164,11 +191,11 @@ html::-webkit-scrollbar,
 }
 
 .Home-Cloths-box-row img {
-  width: 70%;
-  height: 155px;
+  width: 65%;
+  height: 150px;
   position: absolute;
   top: 15px;
-  left: 59px;
+  left: 70px;
 }
 
 .Home-Cloths-box-row p {
@@ -181,30 +208,92 @@ html::-webkit-scrollbar,
   justify-content: center;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  gap: 170px;
-  border-radius: 5px;
-  background-color: #1717174f;
-  box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
-  -webkit-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
-  -moz-box-shadow: 0px 0px 31px -1px rgba(0, 0, 0, 0.52);
-  width: 100%;
-  padding: 18px 0;
-  margin-top: 13.4vh;
+/* Apply responsive styles for screens up to 768px */
+@media screen and (max-width: 768px) {
+  .nav {
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .nav-logo {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .nav-right {
+    justify-content: space-between;
+    gap: 5%;
+    align-items: center;
+  }
+
+  .nav-links {
+    font-size: 18px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  .Home {
+    flex-direction: column;
+    margin: 0;
+    padding: 5%;
+  }
+
+  .Home-Avatar {
+    max-width: 110%;
+    max-height: 439px;
+    margin: 5% 0;
+  }
+
+  .Home-Cloths {
+    max-height: none;
+  }
+
+  /* .row {
+    flex-direction: column;
+    gap: 10px;
+  } */
+
+  .Home-Cloths-box-row {
+    max-width: 100px;
+    max-height: 90px;
+    transform: skewX(0deg);
+    margin-top: 2%;
+    padding: 10px;
+    margin-left: -17px;
+  }
+
+  .Home-Cloths-box-row img {
+    height: 60%;
+    top: 4%;
+    left: 27%;
+  }
+
+  .Home-Cloths-box-row p {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .ar-button {
+    display: block;
+    top: 5%;
+    left: 77%;
+  }
+
+  .delete-button{
+    top: 46%;
+    left:8%;
+  }
 }
 
-.footer-links {
-  padding: 0 10px;
-  padding-top: 5px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: larger;
-  border-radius: 10px;
+/* Apply responsive styles for screens between 769px and 1024px */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Add your responsive styles for this range here */
 }
 
-.footer-links:hover {
-  transform: translate(1px, -2px) rotate(-1deg);
-  background-color: rgba(0, 0, 0, 0.265);
+/* Apply responsive styles for screens above 1024px */
+@media screen and (min-width: 1025px) {
+  /* Add your responsive styles for this range here */
 }

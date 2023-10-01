@@ -14,7 +14,7 @@ const NavBar = () => {
             navigate("/login");
             return;
         }
-        if ((path === "/signup" || path === "/login") && Auth.isAuth ) {
+        if ((path === "/signup" || path === "/login") && Auth.isAuth) {
             navigate("/home");
             return;
         }
@@ -44,7 +44,6 @@ const NavBar = () => {
                     <button className='nav-links' onClick={() => handleNavigation("/signup")} style={{ display: Auth.isAuth ? "none" : "block" }}>Sign up</button>
                     <button className='nav-links' onClick={() => handleNavigation("/login")} style={{ display: Auth.isAuth ? "none" : "block" }}>Login</button>
                     <button className='nav-links' > <img className='nav-cart' src={wardrobe} />    </button>
-                    <button className='nav-links' > <img className='nav-cart' src={cart} />    </button>
                     <button className='nav-links logout' onClick={handleLogout} style={{ display: Auth.isAuth ? "block" : "none" }}>Logout</button>
                 </div>
             </div>

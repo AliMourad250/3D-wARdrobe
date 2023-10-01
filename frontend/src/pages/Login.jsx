@@ -48,6 +48,9 @@ const LogIn = () => {
                 if (response.data.success) {
                     Auth.authenticate(response.data.token, role, email);
                     Auth.isAuth = true;
+                    localStorage.setItem("topPath", response.data.topPath);
+                    localStorage.setItem("bottomPath", response.data.bottomPath);
+
                     navigate("/home");
                 }
             } catch (error) {

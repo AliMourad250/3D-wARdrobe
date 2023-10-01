@@ -1,7 +1,5 @@
 import api from './api'
 
-
-
 class Auth {
 
     static isAuth = this.setIsAuth();
@@ -40,6 +38,8 @@ class Auth {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("email");
+        localStorage.removeItem("topPath");
+        localStorage.removeItem("bottomPath");
         this.isAuth = false;
     }
 }

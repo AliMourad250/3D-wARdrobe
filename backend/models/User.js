@@ -21,6 +21,18 @@ const userSchema = new mongoose.Schema({
         enum: ['user'],
         default: 'user',
     },
+
+    currentMalePath: {
+        type: String,
+    },
+
+    currentTopPath: {
+        type: String,
+    },
+
+    currentBottomPath: {
+        type: String,
+    },
 });
 
 const User = mongoose.model('users', userSchema);

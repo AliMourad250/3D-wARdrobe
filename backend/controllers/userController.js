@@ -35,7 +35,13 @@ exports.login = async (req, res) => {
             expiresIn: 86400,
         });
         await User.updateOne({ "_id": user._id }, { $set: { "token": token } });
-        res.status(200).json({ success: true, token });
+        res.status(200).json({
+            success: true,
+            token,
+            malePath: user.currentMalePath,
+            topPath: user.currentTopPath,
+            bottomPath: user.currentBottomPath
+        });
     } catch (error) {
         console.error("Login Error: ", error.message);
         res.status(400).json({ success: false, message: error.message });
@@ -52,7 +58,10 @@ exports.getTokenAndRole = async (req, res) => {
             return res.status(400).json({ error: 'Invalid email or password.' });
         };
 
-        res.status(200).json({ role: user.role, token: user.token });
+        res.status(200).json({
+            role: user.role,
+            token: user.token,
+        });
 
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
@@ -60,10 +69,10 @@ exports.getTokenAndRole = async (req, res) => {
 }
 
 exports.addToUserWishlist = async (req, res) => {
-    const { userId } = req.userId;
+    const email = req.params.email;
     const { clothingId } = req.body;
     try {
-        const user = await User.findOne({ userId });
+        const user = await User.findOne({ email });
 
         if (!user) {
             return res.status(400).json({ error: 'User Not Found!' })
@@ -74,5 +83,31 @@ exports.addToUserWishlist = async (req, res) => {
     } catch (error) {
         console.error("User Wishlist Item Adding Error: ", error.message);
         res.status(500).json({ success: false, message: error.message });
+    }
+}
+
+exports.setPaths = async (req, res) => {
+    const email = req.params.email;
+    const { malePath, topPath, bottomPath } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ error: 'User Not Found!' })
+        }
+        await User.updateOne(
+            { "email": user.email },
+            {
+                $set: {
+                    "currentMalePath": malePath,
+                    "currentTopPath": topPath,
+                    "currentBottomPath": bottomPath
+                }
+            }
+        );
+
+        res.status(200).json({ success: true });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
     }
 }
