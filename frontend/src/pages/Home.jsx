@@ -6,7 +6,7 @@ import { useLoader } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { useState, useEffect } from 'react';
 import arButton from '../imgs/augmented-reality.png';
-import deleteButton from '../imgs/—Pngtree—delete icon_4420857.png'
+import deleteButton from '../imgs/delete icon.png';
 import malePath from '../models/Male.glb';
 import api from '../api';
 
