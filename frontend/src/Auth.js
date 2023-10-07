@@ -38,13 +38,10 @@ class Auth {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("email");
-        localStorage.removeItem("topPath");
-        localStorage.removeItem("bottomPath");
+
         this.isAuth = false;
     }
 }
-// Auth.setIsAuth();
-console.log(localStorage.getItem("email"));
-console.log(Auth.isAuth);
+
 
 export default Auth;

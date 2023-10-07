@@ -10,6 +10,19 @@ const mannequinSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
+    scaleX: {
+        type: Number,
+        required: true,
+    },
+    scaleY: {
+        type: Number,
+        required: true,
+    },
+    scaleZ: {
+        type: Number,
+        required: true,
+    },
 });
 
 const Mannequin = mongoose.model('mannequins', mannequinSchema);

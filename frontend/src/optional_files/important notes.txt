@@ -1,9 +1,10 @@
-skin colors (from lightest to darkest):
-    #8D5524
+skin colors (from darkest to lightest):
+    #321B0F
+    #492816
     #C68642
     #E0AC69
-    #F1C27D
-    #FFDBAC
+    #EAC086
+    #FFCD94
     
 
 Signup/Login with social media:

@@ -9,7 +9,7 @@ router.post('/signup', userController.signup);
 router.post('/addToWishlist', userController.addToUserWishlist);
 
 router.post('/getTokenAndRole', userController.getTokenAndRole);
-router.post('/setPaths/:email', userController.setPaths)
+router.post('/setPreferences/:email', userController.setPreferences)
 
 router.use('/home', auth.verifyUserToken);
 

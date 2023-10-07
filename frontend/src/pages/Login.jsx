@@ -48,8 +48,27 @@ const LogIn = () => {
                 if (response.data.success) {
                     Auth.authenticate(response.data.token, role, email);
                     Auth.isAuth = true;
+                    localStorage.setItem("mannequinPath", response.data.mannequinPath);
                     localStorage.setItem("topPath", response.data.topPath);
                     localStorage.setItem("bottomPath", response.data.bottomPath);
+                    localStorage.setItem("skinColor", response.data.skinColor);
+                    localStorage.setItem("bodyShape", response.data.bodyShape);
+                    localStorage.setItem("mannequinScaleX", response.data.mannequinScaleX.toString());
+                    localStorage.setItem("mannequinScaleY", response.data.mannequinScaleY.toString());
+                    localStorage.setItem("mannequinScaleZ", response.data.mannequinScaleZ.toString());
+                    localStorage.setItem("topScaleX", response.data.topScaleX.toString());
+                    localStorage.setItem("topScaleY", response.data.topScaleY.toString());
+                    localStorage.setItem("topScaleZ", response.data.topScaleZ.toString());
+                    localStorage.setItem("topPositionX", response.data.topPositionX.toString());
+                    localStorage.setItem("topPositionY", response.data.topPositionY.toString());
+                    localStorage.setItem("topPositionZ", response.data.topPositionZ.toString());
+                    localStorage.setItem("bottomScaleX", response.data.bottomScaleX.toString());
+                    localStorage.setItem("bottomScaleY", response.data.bottomScaleY.toString());
+                    localStorage.setItem("bottomScaleZ", response.data.bottomScaleZ.toString());
+                    localStorage.setItem("bottomPositionX", response.data.bottomPositionX.toString());
+                    localStorage.setItem("bottomPositionY", response.data.bottomPositionY.toString());
+                    localStorage.setItem("bottomPositionZ", response.data.bottomPositionZ.toString());
+
 
                     navigate("/home");
                 }

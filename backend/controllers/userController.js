@@ -38,9 +38,26 @@ exports.login = async (req, res) => {
         res.status(200).json({
             success: true,
             token,
-            malePath: user.currentMalePath,
+            mannequinPath: user.currentMannequinPath,
             topPath: user.currentTopPath,
-            bottomPath: user.currentBottomPath
+            bottomPath: user.currentBottomPath,
+            skinColor: user.currentSkinColor,
+            bodyShape: user.currentBodyShape,
+            mannequinScaleX: user.mannequinScaleX,
+            mannequinScaleY: user.mannequinScaleY,
+            mannequinScaleZ: user.mannequinScaleZ,
+            topScaleX: user.topScaleX,
+            topScaleY: user.topScaleY,
+            topScaleZ: user.topScaleZ,
+            topPositionX: user.topPositionX,
+            topPositionY: user.topPositionY,
+            topPositionZ: user.topPositionZ,
+            bottomScaleX: user.bottomScaleX,
+            bottomScaleY: user.bottomScaleY,
+            bottomScaleZ: user.bottomScaleZ,
+            bottomPositionX: user.bottomPositionX,
+            bottomPositionY: user.bottomPositionY,
+            bottomPositionZ: user.bottomPositionZ,
         });
     } catch (error) {
         console.error("Login Error: ", error.message);
@@ -86,9 +103,30 @@ exports.addToUserWishlist = async (req, res) => {
     }
 }
 
-exports.setPaths = async (req, res) => {
+exports.setPreferences = async (req, res) => {
     const email = req.params.email;
-    const { malePath, topPath, bottomPath } = req.body;
+    const {
+        mannequinPath,
+        topPath,
+        bottomPath,
+        skinColor,
+        bodyShape,
+        mannequinScaleX,
+        mannequinScaleY,
+        mannequinScaleZ,
+        topScaleX,
+        topScaleY,
+        topScaleZ,
+        topPositionX,
+        topPositionY,
+        topPositionZ,
+        bottomScaleX,
+        bottomScaleY,
+        bottomScaleZ,
+        bottomPositionX,
+        bottomPositionY,
+        bottomPositionZ,
+    } = req.body;
 
     try {
         const user = await User.findOne({ email });
@@ -99,9 +137,26 @@ exports.setPaths = async (req, res) => {
             { "email": user.email },
             {
                 $set: {
-                    "currentMalePath": malePath,
+                    "currentMannequinPath": mannequinPath,
                     "currentTopPath": topPath,
-                    "currentBottomPath": bottomPath
+                    "currentBottomPath": bottomPath,
+                    "currentSkinColor": skinColor,
+                    "currentBodyShape": bodyShape,
+                    "mannequinScaleX": mannequinScaleX,
+                    "mannequinScaleY": mannequinScaleY,
+                    "mannequinScaleZ": mannequinScaleZ,
+                    "topScaleX": topScaleX,
+                    "topScaleY": topScaleY,
+                    "topScaleZ": topScaleZ,
+                    "topPositionX": topPositionX,
+                    "topPositionY": topPositionY,
+                    "topPositionZ": topPositionZ,
+                    "bottomScaleX": bottomScaleX,
+                    "bottomScaleY": bottomScaleY,
+                    "bottomScaleZ": bottomScaleZ,
+                    "bottomPositionX": bottomPositionX,
+                    "bottomPositionY": bottomPositionY,
+                    "bottomPositionZ": bottomPositionZ,
                 }
             }
         );

@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "backend": "npm start --prefix backend",
     "frontend": "npm start --prefix frontend",
-    "dev": "npm run backend && npm run frontend"
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^8.2.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
