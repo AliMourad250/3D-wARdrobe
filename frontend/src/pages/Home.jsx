@@ -2,13 +2,13 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Suspense } from 'react';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { XRCanvas, XRHandPrimitive, XRHandModel, XRController } from '@react-three/xr';
 import { useState, useEffect } from 'react';
 import arButton from '../imgs/augmented-reality.png';
 import deleteButton from '../imgs/delete icon.png';
 import Auth from "../Auth";
 import api from '../api';
-import * as THREE from 'three';
 
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
     const [mannequins, setMannequins] = useState([]);
     const [mannequinPath, setMannequinPath] = useState("/models/Blender-Material/Male-Medium/bodyTypes/Male-Medium-bodyType.glb");
     const [mannequin, setMannequin] = useState(null);
-    const [topPath, setTopPath] = useState(localStorage.getItem("topPath"));
+    const [topPath, setTopPath] = useState("");
     const [top, setTop] = useState(null);
     const [bottomPath, setBottomPath] = useState("");
     const [bottom, setBottom] = useState(null);
@@ -346,9 +346,19 @@ const Home = () => {
     useEffect(() => {
         if (top) {
             top.scale.set(topScaleX, topScaleY, topScaleZ);
-            // top.scale.set(1.9065, 1.883, 2.2);
+            // top.scale.set(1.97, 1.89, 2.1);
             top.position.set(topPositionX, topPositionY, topPositionZ);
-            // top.position.set(0.001, -3.488, 0.0755);
+            // top.position.set(-0.155, -3.491, -0.12);
+            if (topPath === "/models/Blender-Material/Male-Small/Tops/Male-Small-Tshirt.glb"
+                || topPath === "/models/Blender-Material/Male-Medium/Tops/Male-Medium-Tshirt.glb"
+                || topPath === "/models/Blender-Material/Male-Large/Tops/Male-Large-Tshirt.glb"
+                || topPath === "/models/Blender-Material/Male-X-Large/Tops/Male-X-Large-Tshirt.glb"
+                || topPath === "/models/Blender-Material/Male-XX-Large/Tops/Male-XX-Large-Tshirt.glb"
+                || topPath === "/models/Blender-Material/Male-XXX-Large/Tops/Male-XXX-Large-Tshirt.glb"
+            ) {
+                top.rotation.x = -0.04;
+            }
+
 
             top.traverse((child) => {
                 if (child.isMesh) {
@@ -361,8 +371,11 @@ const Home = () => {
 
     useEffect(() => {
         if (bottom) {
-            bottom.scale.set(1.84, 1.801, 1.924);
-            bottom.position.set(0.0318, -3.41, 0.0);
+
+            bottom.scale.set(bottomScaleX, bottomScaleY, bottomScaleZ);
+            // bottom.scale.set(1.929, 1.85, 1.96);
+            bottom.position.set(bottomPositionX, bottomPositionY, bottomPositionZ);
+            // bottom.position.set(0.0145, -3.41, 0);
 
             bottom.traverse((child) => {
                 if (child.isMesh) {

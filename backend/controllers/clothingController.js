@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
 
 exports.fetchAll = async (req, res) => {
     try {
-        const clothing = await Clothing.find();
+        const clothing = await Clothing.find().sort({ type: -1 });
         res.json({ clothing });
     } catch (err) {
         res.status(400).json({ message: err.message });

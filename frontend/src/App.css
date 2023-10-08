@@ -82,6 +82,10 @@ html::-webkit-scrollbar,
 }
 
 .logout {
+  border: 1px solid rgba(255, 0, 0, 0.558);
+}
+
+.logout:hover {
   background-color: rgba(255, 0, 0, 0.558);
 }
 
@@ -116,13 +120,14 @@ html::-webkit-scrollbar,
   border: none;
   position: absolute;
   left: 30%;
-  top: 6%;
+  top: 84%;
+
   z-index: 100;
   background-color: #ffffff77;
   border-radius: 30px;
   cursor: pointer;
   padding-top: 3px;
-  display: none;
+  /* display: none; */
 }
 
 .ar-button:hover {
@@ -142,15 +147,14 @@ html::-webkit-scrollbar,
 }
 
 .Home-Avatar {
-  background: url('./imgs/- Zeffir Apartment-.jpg');
+  background: url('./imgs/changing room.jpg');
   background-size: cover;
-  background-position: 0 -62px;
   background-position: center;
   background-blend-mode: multiply;
   border-radius: 10px;
   max-width: 420px;
   margin: 2.5% 0;
-  background-color: #8FBFE0;
+  background-color: #404a51;
 }
 
 .Home-Avatar:hover {
@@ -179,7 +183,7 @@ html::-webkit-scrollbar,
   height: 130px;
   width: 140px;
   max-width: 140px;
-  background: linear-gradient(93deg, rgba(201, 189, 148, 0) 16%, rgba(255, 255, 255, 0.283) 30%);
+  background: linear-gradient(93deg, rgba(201, 189, 148, 0) 16%, #b0b0b09d 30%);
   padding: 50px;
   transform: skewX(-10deg);
   margin-top: 5.1%;
@@ -279,6 +283,7 @@ html::-webkit-scrollbar,
 .navigation.color.active {
   transform: translate(0%, 0%);
 }
+
 .navigation span ion-icon {
   transition: .5s;
   font-size: 0em;
@@ -312,7 +317,7 @@ html::-webkit-scrollbar,
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    width:90%;
+    width: 90%;
   }
 
   .nav-links {
