@@ -44,7 +44,6 @@ const Home = () => {
 
     const [skinColor, setSkinColor] = useState("");
     const [bodyShape, setBodyShape] = useState("M");
-
     const [isActive1, setIsActive1] = useState(false);
     const [isActive2, setIsActive2] = useState(false);
 
@@ -55,7 +54,7 @@ const Home = () => {
         fetchAllMannequins();
         // console.log(mannequins);
         fetchAllClothes();
-        filterByBodyShape();
+
         // if (Auth.isAuth) {
         if (localStorage.getItem("topPath")) {
             setTopPath(localStorage.getItem("topPath"));
@@ -71,6 +70,9 @@ const Home = () => {
         }
         if (localStorage.getItem("bodyShape") !== "M") {
             setBodyShape(localStorage.getItem("bodyShape"));
+        }
+        if (!localStorage.getItem("bodyShape")) {
+            setBodyShape("M");
         }
         if (localStorage.getItem("mannequinScaleX")) {
             setMannequinScaleX(parseFloat(localStorage.getItem("mannequinScaleX")));
@@ -117,7 +119,7 @@ const Home = () => {
         if (localStorage.getItem("bottomPositionZ")) {
             setBottomPositionZ(parseFloat(localStorage.getItem("bottomPositionZ")));
         }
-
+        filterByBodyShape();
         // }
     }, []);
 
@@ -318,7 +320,7 @@ const Home = () => {
             setBottom(null);
         }
         // setUserPreferences();
-        filterByBodyShape();
+        // filterByBodyShape();
     }, [mannequinPath,
         topPath,
         bottomPath,
@@ -350,24 +352,41 @@ const Home = () => {
 
     useEffect(() => {
         if (top) {
-            top.scale.set(topScaleX, topScaleY, topScaleZ);
-            // top.scale.set(1.91, 1.87, 2.043);
             top.position.set(topPositionX, topPositionY, topPositionZ);
-            // top.position.set(-0.021, -3.554, 0.079);
+            // top.scale.set(1.89, 1.859, 2);
 
-            if (topPath === "/models/Blender-Material/Male-Small/Tops/Male-Small-Tshirt.glb"
-                || topPath === "/models/Blender-Material/Male-Medium/Tops/Male-Medium-Tshirt.glb"
-                || topPath === "/models/Blender-Material/Male-Large/Tops/Male-Large-Tshirt.glb"
-                || topPath === "/models/Blender-Material/Male-X-Large/Tops/Male-X-Large-Tshirt.glb"
-                || topPath === "/models/Blender-Material/Male-XX-Large/Tops/Male-XX-Large-Tshirt.glb"
-                || topPath === "/models/Blender-Material/Male-XXX-Large/Tops/Male-XXX-Large-Tshirt.glb"
+            top.scale.set(topScaleX, topScaleY, topScaleZ);
+            // top.position.set(0.02, -3.4, -0.03);
+
+            if (
+                // topPath === "/models/Blender-Material/Male-Small/Tops/Male-Small-Tshirt.glb"||
+                topPath === "/models/Blender-Material/Male-Medium/Tops/Male-Medium-Tshirt.glb" ||
+                // topPath === "/models/Blender-Material/Male-Large/Tops/Male-Large-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-X-Large/Tops/Male-X-Large-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-XX-Large/Tops/Male-XX-Large-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-XXX-Large/Tops/Male-XXX-Large-Tshirt.glb"
+            ) {
+
+                top.rotation.x = -0.04;
+            }
+
+            if (topPath === "/models/Blender-Material/Male-Large/Tops/Male-Large-Tshirt.glb") {
+                top.rotation.z = -0.01
+            }
+
+            if (
+                topPath === "/models/Blender-Material/Male-Small/Tops/Male-Small-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-Medium/Tops/Male-Medium-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-Large/Tops/Male-Large-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-X-Large/Tops/Male-X-Large-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-XX-Large/Tops/Male-XX-Large-Tshirt.glb" ||
+                topPath === "/models/Blender-Material/Male-XXX-Large/Tops/Male-XXX-Large-Tshirt.glb"
             ) {
                 top.traverse((child) => {
                     if (child.isMesh) {
                         child.material.color.set("grey");
                     }
                 });
-                top.rotation.x = -0.04;
             }
 
 
@@ -384,10 +403,9 @@ const Home = () => {
         if (bottom) {
 
             bottom.scale.set(bottomScaleX, bottomScaleY, bottomScaleZ);
-            // bottom.scale.set(1.915, 1.7, 2.02);
+            // bottom.scale.set(1.9447, 1.933, 1.945);
             bottom.position.set(bottomPositionX, bottomPositionY, bottomPositionZ);
-            // bottom.position.set(0.01, -3.07, -0.03);
-
+            // bottom.position.set(0.0027, -3.41, 0.016);
             bottom.traverse((child) => {
                 if (child.isMesh) {
                     child.material.metalness = 0;
@@ -408,7 +426,7 @@ const Home = () => {
         const cameraRef = useRef(null);
 
         useEffect(() => {
-            let camera, scene, renderer;
+            let camera, scene, renderer, controls;
 
             function init() {
                 const container = document.createElement("div");
@@ -467,9 +485,9 @@ const Home = () => {
                 scene.add(bottom);
                 bottomRef.current = bottom;
 
+
+
                 document.body.appendChild(ARButton.createButton(renderer));
-                // document.body.appendChild(btn);
-                // btn.onclick(toggleAR);
                 window.addEventListener("resize", onWindowResize, false);
 
 
