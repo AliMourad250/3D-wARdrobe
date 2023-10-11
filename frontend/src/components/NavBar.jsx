@@ -2,18 +2,29 @@ import cart from '../imgs/cart.svg';
 import wardrobe from '../imgs/wardrobe.svg';
 import logo from '../imgs/logo.png';
 import Auth from '../Auth';
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
 
 const NavBar = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const [isAuth, setIsAuth] = useState();
+
+    useEffect(() => {
+        setIsAuth(Auth.isAuth)
+    }, [])
+
+    useEffect(() => {
+        setIsAuth(Auth.isAuth)
+    }, [Auth.isAuth])
+
 
     const handleNavigation = (path) => {
-        if (path === "/home" && !Auth.isAuth) {
-            navigate("/login");
-            return;
-        }
+        // if (path === "/home" && !Auth.isAuth) {
+        //     navigate("/login");
+        //     return;
+        // }
         if ((path === "/signup" || path === "/login") && Auth.isAuth) {
             navigate("/home");
             return;
@@ -30,7 +41,8 @@ const NavBar = () => {
 
     const handleLogout = () => {
         Auth.deAuthenticate();
-        navigate("/login");
+        setIsAuth(false);
+        // navigate("/login");
     }
 
     return (
@@ -41,10 +53,10 @@ const NavBar = () => {
                 <div className="nav-right">
                     <button className='nav-links' onClick={() => handleNavigation("/home")}>Home</button>
                     <button className='nav-links' onClick={() => handleNavigation("/about")}>About</button>
-                    <button className='nav-links' onClick={() => handleNavigation("/signup")} style={{ display: Auth.isAuth ? "none" : "block" }}>Sign up</button>
-                    <button className='nav-links' onClick={() => handleNavigation("/login")} style={{ display: Auth.isAuth ? "none" : "block" }}>Login</button>
+                    <button className='nav-links' onClick={() => handleNavigation("/signup")} style={{ display: isAuth ? "none" : "block" }}>Sign up</button>
+                    <button className='nav-links' onClick={() => handleNavigation("/login")} style={{ display: isAuth ? "none" : "block" }}>Login</button>
                     <button className='nav-links' > <img className='nav-cart' src={wardrobe} />    </button>
-                    <button className='nav-links logout' onClick={handleLogout} style={{ display: Auth.isAuth ? "block" : "none" }}>Logout</button>
+                    <button className='nav-links logout' onClick={handleLogout} style={{ display: isAuth ? "block" : "none" }}>Logout</button>
                 </div>
             </div>
         </>

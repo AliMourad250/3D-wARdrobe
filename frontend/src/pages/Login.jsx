@@ -14,22 +14,22 @@ const LogIn = () => {
 
     useEffect(() => {
         Auth.setIsAuth();
-        if (Auth.isAuth) {
-            navigate("/home");
-        }
-        else if (!Auth.isAuth) {
-            navigate("/login");
-        }
+        // if (Auth.isAuth) {
+        //     navigate("/home");
+        // }
+        // else if (!Auth.isAuth) {
+        //     navigate("/login");
+        // }
     }, []);
 
-    useEffect(() => {
-        if (Auth.isAuth) {
-            navigate("/home");
-        }
-        else if (!Auth.isAuth) {
-            navigate("/login");
-        }
-    }, [navigate]);
+    // useEffect(() => {
+    //     if (Auth.isAuth) {
+    //         navigate("/home");
+    //     }
+    //     else if (!Auth.isAuth) {
+    //         navigate("/login");
+    //     }
+    // }, [navigate]);
 
 
     const handleLogin = async (role) => {

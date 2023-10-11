@@ -2,7 +2,12 @@ import api from './api'
 
 class Auth {
 
-    static isAuth = this.setIsAuth();
+    static isAuth = (
+        localStorage.getItem("email") &&
+        localStorage.getItem("token") &&
+        localStorage.getItem("role") &&
+        this.setIsAuth()
+    );
 
     static async setIsAuth() {
         const localEmail = localStorage.getItem("email");
