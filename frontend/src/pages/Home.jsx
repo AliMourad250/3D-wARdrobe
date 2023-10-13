@@ -16,18 +16,24 @@ import api from '../api';
 const Home = () => {
     const [clothings, setClothings] = useState([]);
     const [filteredClothings, setFilteredClothings] = useState([]);
+
     const [mannequins, setMannequins] = useState([]);
     const [mannequinPath, setMannequinPath] = useState("/models/Blender-Material/Male-Medium/bodyTypes/Male-Medium-bodyType.glb");
     const [mannequin, setMannequin] = useState(null);
+
     const [topPath, setTopPath] = useState("");
     const [top, setTop] = useState(null);
+    const [correspTop, setCorrespTop] = useState({});
+
     const [bottomPath, setBottomPath] = useState("");
     const [bottom, setBottom] = useState(null);
+    const [correspBottom, setCorrespBottom] = useState({});
 
     const [mannequinScaleX, setMannequinScaleX] = useState(1.91);
     const [mannequinScaleY, setMannequinScaleY] = useState(1.86);
     const [mannequinScaleZ, setMannequinScaleZ] = useState(1.85);
 
+    const [topName, setTopName] = useState("");
     const [topScaleX, setTopScaleX] = useState(0);
     const [topScaleY, setTopScaleY] = useState(0);
     const [topScaleZ, setTopScaleZ] = useState(0);
@@ -35,6 +41,7 @@ const Home = () => {
     const [topPositionY, setTopPositionY] = useState(0);
     const [topPositionZ, setTopPositionZ] = useState(0);
 
+    const [bottomName, setBottomName] = useState("");
     const [bottomScaleX, setBottomScaleX] = useState(0);
     const [bottomScaleY, setBottomScaleY] = useState(0);
     const [bottomScaleZ, setBottomScaleZ] = useState(0);
@@ -44,23 +51,28 @@ const Home = () => {
 
     const [skinColor, setSkinColor] = useState("");
     const [bodyShape, setBodyShape] = useState("M");
+
     const [isActive1, setIsActive1] = useState(false);
     const [isActive2, setIsActive2] = useState(false);
+    const [arActive, setArActive] = useState(false);
 
-    const [arVisible, setArVisible] = useState(false);
     const email = localStorage.getItem("email");
 
     useEffect(() => {
         fetchAllMannequins();
-        // console.log(mannequins);
         fetchAllClothes();
 
-        // if (Auth.isAuth) {
         if (localStorage.getItem("topPath")) {
             setTopPath(localStorage.getItem("topPath"));
         }
+        if (localStorage.getItem("topName")) {
+            setTopName(localStorage.getItem("topName"));
+        }
         if (localStorage.getItem("bottomPath")) {
             setBottomPath(localStorage.getItem("bottomPath"));
+        }
+        if (localStorage.getItem("bottomName")) {
+            setBottomName(localStorage.getItem("bottomName"));
         }
         if (localStorage.getItem("mannequinPath")) {
             setMannequinPath(localStorage.getItem("mannequinPath"));
@@ -120,7 +132,11 @@ const Home = () => {
             setBottomPositionZ(parseFloat(localStorage.getItem("bottomPositionZ")));
         }
         filterByBodyShape();
-        // }
+        // setCorrespTop(filteredClothings.filter(item => item.name === topName)[0]);
+        // console.log(correspTop);
+        // setCorrespBottom(filteredClothings.filter(item => item.name === bottomName)[0]);
+        // console.log(correspBottom);
+
     }, []);
 
     const toggleMenu1 = () => {
@@ -131,13 +147,12 @@ const Home = () => {
     };
 
     const toggleAR = () => {
-        setArVisible(!arVisible);
+        setArActive(!arActive);
     };
 
     const fetchAllClothes = async () => {
         try {
             const response = await api.get("/clothings/fetchAll");
-            // console.log(response.data.clothing);
             if (!response) {
                 console.error("Error fetching Clothes")
                 return;
@@ -151,7 +166,6 @@ const Home = () => {
     const fetchAllMannequins = async () => {
         try {
             const response = await api.get("/mannequins/fetchAll");
-            console.log(response.data.mannequins);
             if (!response) {
                 console.error("Error fetching Mannequins")
                 return;
@@ -173,6 +187,8 @@ const Home = () => {
 
     const filterByBodyShape = () => {
         setFilteredClothings(clothings.filter(item => item.size === bodyShape));
+        setCorrespTop(clothings.filter(item => item.size === bodyShape).filter(item => item.name === topName)[0]);
+        setCorrespBottom(clothings.filter(item => item.size === bodyShape).filter(item => item.name === bottomName)[0]);
     };
 
     const setUserPreferences = async () => {
@@ -221,6 +237,7 @@ const Home = () => {
     const handleClothesClick = (cloth) => {
         if (cloth.type === "top") {
             if (localStorage.getItem("topPath") !== cloth.path) {
+                setTopName(cloth.name);
                 setTopPath(cloth.path);
                 localStorage.setItem("topPath", cloth.path);
                 setTopScaleX(cloth.scaleX);
@@ -231,6 +248,7 @@ const Home = () => {
                 setTopPositionY(cloth.positionY);
                 setTopPositionZ(cloth.positionZ);
 
+                localStorage.setItem("topName", cloth.name);
                 localStorage.setItem("topScaleX", cloth.scaleX.toString());
                 localStorage.setItem("topScaleY", cloth.scaleY.toString());
                 localStorage.setItem("topScaleZ", cloth.scaleZ.toString());
@@ -240,12 +258,15 @@ const Home = () => {
             }
             else {
                 setTopPath("");
+                setTopName("");
                 localStorage.setItem("topPath", "");
+                localStorage.setItem("topName", "");
             }
 
         }
         else if (cloth.type === "bottom") {
             if (localStorage.getItem("bottomPath") !== cloth.path) {
+                setBottomName(cloth.name);
                 setBottomPath(cloth.path);
                 localStorage.setItem("bottomPath", cloth.path);
                 setBottomScaleX(cloth.scaleX);
@@ -256,6 +277,7 @@ const Home = () => {
                 setBottomPositionY(cloth.positionY);
                 setBottomPositionZ(cloth.positionZ);
 
+                localStorage.setItem("bottomName", cloth.name);
                 localStorage.setItem("bottomScaleX", cloth.scaleX.toString());
                 localStorage.setItem("bottomScaleY", cloth.scaleY.toString());
                 localStorage.setItem("bottomScaleZ", cloth.scaleZ.toString());
@@ -265,7 +287,9 @@ const Home = () => {
             }
             else {
                 setBottomPath("");
+                setBottomName("");
                 localStorage.setItem("bottomPath", "");
+                localStorage.setItem("bottomName", "");
             }
         }
     };
@@ -289,6 +313,7 @@ const Home = () => {
     useEffect(() => {
         localStorage.setItem("skinColor", skinColor);
         localStorage.setItem("bodyShape", bodyShape);
+        filterByBodyShape();
 
         if (mannequinPath !== "") {
             const loader = new GLTFLoader();
@@ -300,6 +325,8 @@ const Home = () => {
             setMannequin(null);
         }
         if (topPath !== "") {
+
+
             const loader = new GLTFLoader();
             loader.load(topPath, (gltf) => {
                 setTop(gltf.scene);
@@ -311,6 +338,7 @@ const Home = () => {
         }
 
         if (bottomPath !== "") {
+
             const loader = new GLTFLoader();
             loader.load(bottomPath, (gltf) => {
                 setBottom(gltf.scene);
@@ -337,6 +365,43 @@ const Home = () => {
         filterByBodyShape();
     }, [clothings])
 
+    useEffect(() => {
+        if (top !== null && topPath !== "") {
+            setTopPath(correspTop.path);
+            setTopScaleX(correspTop.scaleX);
+            setTopScaleY(correspTop.scaleY);
+            setTopScaleZ(correspTop.scaleZ);
+            setTopPositionX(correspTop.positionX);
+            setTopPositionY(correspTop.positionY);
+            setTopPositionZ(correspTop.positionZ);
+
+            localStorage.setItem("topPath", correspTop.path);
+            localStorage.setItem("topScaleX", correspTop.scaleX.toString());
+            localStorage.setItem("topScaleY", correspTop.scaleY.toString());
+            localStorage.setItem("topScaleZ", correspTop.scaleZ.toString());
+            localStorage.setItem("topPositionX", correspTop.positionX.toString());
+            localStorage.setItem("topPositionY", correspTop.positionY.toString());
+            localStorage.setItem("topPositionZ", correspTop.positionZ.toString());
+        }
+        if (bottom !== null && bottomPath !== "") {
+            setBottomPath(correspBottom.path);
+            setBottomScaleX(correspBottom.scaleX);
+            setBottomScaleY(correspBottom.scaleY);
+            setBottomScaleZ(correspBottom.scaleZ);
+            setBottomPositionX(correspBottom.positionX);
+            setBottomPositionY(correspBottom.positionY);
+            setBottomPositionZ(correspBottom.positionZ);
+
+            localStorage.setItem("bottomPath", correspBottom.path);
+            localStorage.setItem("bottomScaleX", correspBottom.scaleX.toString());
+            localStorage.setItem("bottomScaleY", correspBottom.scaleY.toString());
+            localStorage.setItem("bottomScaleZ", correspBottom.scaleZ.toString());
+            localStorage.setItem("bottomPositionX", correspBottom.positionX.toString());
+            localStorage.setItem("bottomPositionY", correspBottom.positionY.toString());
+            localStorage.setItem("bottomPositionZ", correspBottom.positionZ.toString());
+        }
+    }, [correspTop, correspBottom])
+
 
     useEffect(() => {
         if (mannequin) {
@@ -359,9 +424,7 @@ const Home = () => {
             // top.position.set(0.02, -3.4, -0.03);
 
             if (
-                // topPath === "/models/Blender-Material/Male-Small/Tops/Male-Small-Tshirt.glb"||
                 topPath === "/models/Blender-Material/Male-Medium/Tops/Male-Medium-Tshirt.glb" ||
-                // topPath === "/models/Blender-Material/Male-Large/Tops/Male-Large-Tshirt.glb" ||
                 topPath === "/models/Blender-Material/Male-X-Large/Tops/Male-X-Large-Tshirt.glb" ||
                 topPath === "/models/Blender-Material/Male-XX-Large/Tops/Male-XX-Large-Tshirt.glb" ||
                 topPath === "/models/Blender-Material/Male-XXX-Large/Tops/Male-XXX-Large-Tshirt.glb"
@@ -418,163 +481,138 @@ const Home = () => {
     const groupedClothes = groupIntoRows(filteredClothings);
 
     function AR() {
-        const [isDragging, setIsDragging] = useState(false);
-        const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
         const mannequinRef = useRef(null);
         const topRef = useRef(null);
         const bottomRef = useRef(null);
         const cameraRef = useRef(null);
 
+        let mannequinAR = mannequin.clone();
+        let topAR, bottomAR;
+        if (top !== null) {
+            topAR = top.clone();
+        }
+        if (bottom !== null) {
+            bottomAR = bottom.clone();
+        }
+
         useEffect(() => {
-            let camera, scene, renderer, controls;
+            let camera, scene, renderer, controller, arBtn;
+            const container = document.createElement("div");
 
-            function init() {
-                const container = document.createElement("div");
-                document.body.appendChild(container);
+            if (arActive) {
+                function init() {
 
-                scene = new THREE.Scene();
+                    document.body.appendChild(container);
 
-                camera = new THREE.PerspectiveCamera(
-                    70,
-                    window.innerWidth / window.innerHeight,
-                    0.01,
-                    40
-                );
-                cameraRef.current = camera;
+                    scene = new THREE.Scene();
 
-                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-                renderer.setPixelRatio(window.devicePixelRatio);
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.xr.enabled = true;
-                container.appendChild(renderer.domElement);
+                    camera = new THREE.PerspectiveCamera(
+                        70,
+                        window.innerWidth / window.innerHeight,
+                        0.01,
+                        40
+                    );
+                    cameraRef.current = camera;
 
-                var light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
-                light.position.set(0.5, 1, 0.25);
-                scene.add(light);
+                    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                    renderer.setPixelRatio(window.devicePixelRatio);
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    renderer.xr.enabled = true;
+                    container.appendChild(renderer.domElement);
 
-                // Assuming you have the original and new scales and positions
-                const newMannequinScale = new THREE.Vector3(mannequinScaleX / 3, mannequinScaleY / 3, mannequinScaleZ / 3);
-                const newTopScale = new THREE.Vector3(topScaleX / 3, topScaleY / 3, topScaleZ / 3);
-                const newTopPosition = new THREE.Vector3(topPositionX / 3, topPositionY / 3, topPositionZ / 3);
-                const newBottomScale = new THREE.Vector3(bottomScaleX / 3, bottomScaleY / 3, bottomScaleZ / 3);
-                const newBottomPosition = new THREE.Vector3(bottomPositionX / 3, bottomPositionY / 3, bottomPositionZ / 3);
-
-                // Set the new scale and position for the mannequin, top, and bottom models
-                mannequin.scale.copy(newMannequinScale);
-                top.scale.copy(newTopScale);
-                top.position.copy(newTopPosition);
-                bottom.scale.copy(newBottomScale);
-                bottom.position.copy(newBottomPosition);
+                    var light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
+                    light.position.set(0.5, 1, 0.25);
+                    scene.add(light);
 
 
-                // mannequin.scale.set(mannequinScaleX / 3, mannequinScaleY / 3, mannequinScaleZ / 3);
-                mannequin.position.set(0, -3.33, 0);
-
-                scene.add(mannequin);
-                mannequinRef.current = mannequin;
-
-                // top.scale.set(topScaleX / 3, topScaleY / 3, topScaleZ / 3);
-                // top.position.set(topPositionX, topPositionY, topPositionZ);
-
-                scene.add(top);
-                topRef.current = top;
-
-                // bottom.scale.set(bottomScaleX / 3, bottomScaleY / 3, bottomScaleZ / 3);
-                // bottom.position.set(bottomPositionX, bottomPositionY, bottomPositionZ);
-
-                scene.add(bottom);
-                bottomRef.current = bottom;
+                    const newMannequinScale = new THREE.Vector3(mannequinScaleX / 3.5, mannequinScaleY / 3.5, mannequinScaleZ / 3.5);
+                    const newTopScale = new THREE.Vector3(topScaleX / 3.5, topScaleY / 3.5, topScaleZ / 3.5);
+                    const newTopPosition = new THREE.Vector3(topPositionX / 3.5, topPositionY / 3.5, (topPositionZ / 3.5) - 1.5);
+                    const newBottomScale = new THREE.Vector3(bottomScaleX / 3.5, bottomScaleY / 3.5, (bottomScaleZ / 3.5));
+                    const newBottomPosition = new THREE.Vector3(bottomPositionX / 3.5, bottomPositionY / 3.5, (bottomPositionZ / 3.5) - 1.5);
 
 
+                    mannequinAR.scale.copy(newMannequinScale);
+                    mannequinAR.position.set(0, -3.33 / 3.5, -1.5);
+                    mannequinRef.current = mannequinAR;
 
-                document.body.appendChild(ARButton.createButton(renderer));
-                window.addEventListener("resize", onWindowResize, false);
 
-
-            }
-
-            function onWindowResize() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            }
-
-            function animate() {
-                renderer.setAnimationLoop(render);
-            }
-
-            function render() {
-                if (mannequinRef.current) {
-                    if (isDragging) {
-                        const { x, y } = dragOffset;
-                        mannequinRef.current.rotation.y += x * 0.01;
-                        mannequinRef.current.rotation.x += y * 0.01;
-                        mannequinRef.current.updateMatrix();
+                    if (topAR) {
+                        topAR.scale.copy(newTopScale);
+                        topAR.position.copy(newTopPosition);
+                        topRef.current = topAR;
                     }
 
-                    // Update the mannequin's position to follow the camera
-                    if (cameraRef.current) {
-                        const offset = new THREE.Vector3(0, -1, -2); // Adjust this offset to control the distance
-                        const mannequinPosition = cameraRef.current.position
-                            .clone()
-                            .add(offset);
-                        mannequinRef.current.position.copy(mannequinPosition);
-                        mannequinRef.current.updateMatrix();
+                    if (bottomAR) {
+                        bottomAR.scale.copy(newBottomScale);
+                        bottomAR.position.copy(newBottomPosition);
+                        bottomRef.current = bottomAR;
                     }
+
+                    controller = renderer.xr.getController(0);
+                    controller.addEventListener('select', onSelect);
+                    scene.add(controller);
+
+                    arBtn = ARButton.createButton(renderer);
+                    arBtn.style.backgroundColor = "green"
+                    document.body.appendChild(arBtn);
+                    setTimeout(function () {
+                        document.body.removeChild(arBtn);
+                        document.body.removeChild(container);
+                        setArActive(false);
+                    }, 3000);
+
+                    window.addEventListener("resize", onWindowResize, false);
+
                 }
-                if (topRef.current) {
-                    if (isDragging) {
-                        const { x, y } = dragOffset;
-                        topRef.current.rotation.y += x * 0.01;
-                        topRef.current.rotation.x += y * 0.01;
-                        topRef.current.updateMatrix();
+
+                function onSelect() {
+                    mannequinAR.applyMatrix4(controller.matrixWorld);
+                    scene.add(mannequinAR);
+
+                    if (topAR) {
+                        topAR.applyMatrix4(controller.matrixWorld);
+                        scene.add(topAR);
                     }
 
-                    // Update the mannequin's position to follow the camera
-                    if (cameraRef.current) {
-                        const offset = new THREE.Vector3(0, -1, -2); // Adjust this offset to control the distance
-                        const topPosition = cameraRef.current.position
-                            .clone()
-                            .add(offset);
-                        topRef.current.position.copy(topPosition);
-                        topRef.current.updateMatrix();
+                    if (bottomAR) {
+                        bottomAR.applyMatrix4(controller.matrixWorld);
+                        scene.add(bottomAR);
                     }
                 }
 
-                if (bottomRef.current) {
-                    if (isDragging) {
-                        const { x, y } = dragOffset;
-                        bottomRef.current.rotation.y += x * 0.01;
-                        bottomRef.current.rotation.x += y * 0.01;
-                        bottomRef.current.updateMatrix();
-                    }
+                function onWindowResize() {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
 
-                    // Update the mannequin's position to follow the camera
-                    if (cameraRef.current) {
-                        const offset = new THREE.Vector3(0, -1, -2); // Adjust this offset to control the distance
-                        const bottomPosition = cameraRef.current.position
-                            .clone()
-                            .add(offset);
-                        bottomRef.current.position.copy(bottomPosition);
-                        bottomRef.current.updateMatrix();
-                    }
+                    renderer.setSize(window.innerWidth, window.innerHeight);
                 }
 
-                renderer.render(scene, camera);
+                function animate() {
+                    renderer.setAnimationLoop(render);
+                }
+
+                function render() {
+                    renderer.render(scene, camera);
+                }
+
+                init();
+                animate();
+
+                return () => {
+                    window.removeEventListener("resize", onWindowResize, false);
+
+                    if (renderer) {
+                        const domElement = renderer.domElement;
+                    }
+                };
             }
-
-            init();
-            animate();
-
-            return () => {
-                window.removeEventListener("resize", onWindowResize, false);
-
-                if (renderer) {
-                    const domElement = renderer.domElement;
+            else if (!arActive) {
+                if (document.body.contains(container)) {
+                    document.body.removeChild(container);
                 }
-            };
-        }, []);
+            }
+        }, [arActive]);
 
         return null;
     }
@@ -584,7 +622,7 @@ const Home = () => {
             <div className='home-container'>
                 <div className="Home">
                     <button className='ar-button'><img src={arButton} alt="" onClick={toggleAR} /></button>
-                    {arVisible && (
+                    {arActive && (
                         <AR />
                     )}
                     <button className='delete-button' onClick={handleClear}><img src={deleteButton} alt="" /></button>

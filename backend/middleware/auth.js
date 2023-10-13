@@ -10,7 +10,7 @@ module.exports = {
             if (err) return res.status(500).json({
                 error: 'Failed to authenticate token.'
             })
-            req.userId = decoded.id;
+            req.userId = decoded.id; 
             req.role = decoded.role;
             next();
         })
