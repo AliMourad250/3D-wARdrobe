@@ -55,7 +55,7 @@ const NavBar = () => {
                     <button className='nav-links' onClick={() => handleNavigation("/about")}>About</button>
                     <button className='nav-links' onClick={() => handleNavigation("/signup")} style={{ display: isAuth ? "none" : "block" }}>Sign up</button>
                     <button className='nav-links' onClick={() => handleNavigation("/login")} style={{ display: isAuth ? "none" : "block" }}>Login</button>
-                    <button className='nav-links' > <img className='nav-cart' src={wardrobe} />    </button>
+                    {/* <button className='nav-links' > <img className='nav-cart' src={wardrobe} />    </button> */}
                     <button className='nav-links logout' onClick={handleLogout} style={{ display: isAuth ? "block" : "none" }}>Logout</button>
                 </div>
             </div>

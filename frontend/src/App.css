@@ -343,11 +343,6 @@ html::-webkit-scrollbar,
     max-height: none;
   }
 
-  /* .row {
-    flex-direction: column;
-    gap: 10px;
-  } */
-
   .Home-Cloths-box-row {
     max-width: 100px;
     max-height: 90px;
@@ -372,11 +367,13 @@ html::-webkit-scrollbar,
     display: block;
     top: 4.5%;
     left: 78%;
+    max-width: 63px;
   }
 
   .delete-button {
     top: 4.5%;
     left: 7%;
+    max-width: 63px;
   }
 
   .navigation.size {
