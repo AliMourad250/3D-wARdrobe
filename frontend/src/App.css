@@ -103,7 +103,7 @@ html::-webkit-scrollbar,
   cursor: pointer;
   padding-top: 3px;
   z-index: 100;
-  top: 7%;
+  top: 84%;
   left: 30%;
 }
 
@@ -267,8 +267,8 @@ html::-webkit-scrollbar,
 
 
 .navigation.size {
-  left: 4%;
   top: 84%;
+  left: 4%;
 }
 
 .navigation.color {
@@ -299,7 +299,7 @@ html::-webkit-scrollbar,
   filter: drop-shadow(0 0 2px #ffffff8f) drop-shadow(0 0 5px #ffffff8f) drop-shadow(0 0 15px #ffffff8f);
 }
 
-/* Apply responsive styles for screens up to 768px */
+
 @media screen and (max-width: 768px) {
   .nav {
     /* display: flex; */
@@ -395,12 +395,8 @@ html::-webkit-scrollbar,
   }
 }
 
-/* Apply responsive styles for screens between 769px and 1024px */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  /* Add your responsive styles for this range here */
-}
 
-/* Apply responsive styles for screens above 1024px */
-@media screen and (min-width: 1025px) {
-  /* Add your responsive styles for this range here */
-}
+@media screen and (min-width: 769px) and (max-width: 1024px) {}
+
+
+@media screen and (min-width: 1025px) {}
