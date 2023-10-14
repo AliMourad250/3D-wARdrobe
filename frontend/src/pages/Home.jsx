@@ -621,9 +621,7 @@ const Home = () => {
         <>
             <div className='home-container'>
                 <div className="Home">
-                    {window.innerWidth <= 768 && (
-                        <button className='ar-button'><img src={arButton} alt="" onClick={toggleAR} /></button>
-                    )}
+                    <button className='ar-button'><img src={arButton} alt="" onClick={toggleAR} /></button>
                     {arActive && (
                         <AR />
                     )}

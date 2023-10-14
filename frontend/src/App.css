@@ -127,7 +127,7 @@ html::-webkit-scrollbar,
   border-radius: 30px;
   cursor: pointer;
   padding-top: 3px;
-  /* display: none; */
+  display: none;
 }
 
 .ar-button:hover {
