@@ -2,8 +2,7 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Suspense } from 'react';
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { XRCanvas, XRHandPrimitive, XRHandModel, XRController } from '@react-three/xr';
+import { OrbitControls } from '@react-three/drei';
 import { useState, useRef, useEffect } from 'react';
 import arButton from '../imgs/augmented-reality.png';
 import { ARButton } from "three/examples/jsm/webxr/ARButton";
@@ -11,6 +10,8 @@ import * as THREE from "three";
 import deleteButton from '../imgs/delete icon.png';
 import Auth from "../Auth";
 import api from '../api';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 
 const Home = () => {
@@ -57,6 +58,7 @@ const Home = () => {
     const [arActive, setArActive] = useState(false);
 
     const email = localStorage.getItem("email");
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchAllMannequins();
@@ -132,12 +134,11 @@ const Home = () => {
             setBottomPositionZ(parseFloat(localStorage.getItem("bottomPositionZ")));
         }
         filterByBodyShape();
-        // setCorrespTop(filteredClothings.filter(item => item.name === topName)[0]);
-        // console.log(correspTop);
-        // setCorrespBottom(filteredClothings.filter(item => item.name === bottomName)[0]);
-        // console.log(correspBottom);
-
+        setCorrespTop({});
+        setCorrespBottom({});
     }, []);
+
+
 
     const toggleMenu1 = () => {
         setIsActive1(!isActive1);
@@ -187,8 +188,11 @@ const Home = () => {
 
     const filterByBodyShape = () => {
         setFilteredClothings(clothings.filter(item => item.size === bodyShape));
+
         setCorrespTop(clothings.filter(item => item.size === bodyShape).filter(item => item.name === topName)[0]);
         setCorrespBottom(clothings.filter(item => item.size === bodyShape).filter(item => item.name === bottomName)[0]);
+
+
     };
 
     const setUserPreferences = async () => {
@@ -216,10 +220,6 @@ const Home = () => {
                     bottomPositionY,
                     bottomPositionZ
                 });
-
-                if (response.data.success) {
-                    console.log("Preferences successfully changed!")
-                }
             } catch (error) {
                 console.error(error.response.data.message);
             }
@@ -303,10 +303,9 @@ const Home = () => {
         localStorage.setItem("mannequinScaleY", mannequin.scaleY);
         setMannequinScaleZ(mannequin.scaleZ);
         localStorage.setItem("mannequinScaleZ", mannequin.scaleZ);
-
-
-
         setBodyShape(mannequin.bodyShape);
+
+
     }
 
 
@@ -366,7 +365,7 @@ const Home = () => {
     }, [clothings])
 
     useEffect(() => {
-        if (top !== null && topPath !== "") {
+        if (top !== null && topPath !== "" && correspTop !== ({})) {
             setTopPath(correspTop.path);
             setTopScaleX(correspTop.scaleX);
             setTopScaleY(correspTop.scaleY);
@@ -383,7 +382,7 @@ const Home = () => {
             localStorage.setItem("topPositionY", correspTop.positionY.toString());
             localStorage.setItem("topPositionZ", correspTop.positionZ.toString());
         }
-        if (bottom !== null && bottomPath !== "") {
+        if (bottom !== null && bottomPath !== "" && correspBottom !== ({})) {
             setBottomPath(correspBottom.path);
             setBottomScaleX(correspBottom.scaleX);
             setBottomScaleY(correspBottom.scaleY);
@@ -417,19 +416,12 @@ const Home = () => {
 
     useEffect(() => {
         if (top) {
-            top.position.set(topPositionX, topPositionY, topPositionZ);
-            // top.scale.set(1.89, 1.859, 2);
-
+            // top.scale.set(1.94, 1.8461, 1.99);
             top.scale.set(topScaleX, topScaleY, topScaleZ);
-            // top.position.set(0.02, -3.4, -0.03);
+            // top.position.set(0.015, -3.37, 0.049);
+            top.position.set(topPositionX, topPositionY, topPositionZ);
 
-            if (
-                topPath === "/models/Blender-Material/Male-Medium/Tops/Male-Medium-Tshirt.glb" ||
-                topPath === "/models/Blender-Material/Male-X-Large/Tops/Male-X-Large-Tshirt.glb" ||
-                topPath === "/models/Blender-Material/Male-XX-Large/Tops/Male-XX-Large-Tshirt.glb" ||
-                topPath === "/models/Blender-Material/Male-XXX-Large/Tops/Male-XXX-Large-Tshirt.glb"
-            ) {
-
+            if (topPath === "/models/Blender-Material/Male-Medium/Tops/Male-Medium-Tshirt.glb") {
                 top.rotation.x = -0.04;
             }
 
@@ -464,11 +456,11 @@ const Home = () => {
 
     useEffect(() => {
         if (bottom) {
-
+            // bottom.scale.set(1.915, 1.727, 2.02);
             bottom.scale.set(bottomScaleX, bottomScaleY, bottomScaleZ);
-            // bottom.scale.set(1.9447, 1.933, 1.945);
+            // bottom.position.set(0.006, -3.05, -0.04);
             bottom.position.set(bottomPositionX, bottomPositionY, bottomPositionZ);
-            // bottom.position.set(0.0027, -3.41, 0.016);
+
             bottom.traverse((child) => {
                 if (child.isMesh) {
                     child.material.metalness = 0;

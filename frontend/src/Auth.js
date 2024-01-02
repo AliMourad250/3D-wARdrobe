@@ -43,6 +43,7 @@ class Auth {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("email");
+        // localStorage.clear();
 
         this.isAuth = false;
     }
